@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { RenbanLine as RenbanLineType } from "../../types/decorations/line"
-import { Color } from "../../types/general"
-import { zip } from "../../utils"
+import { Color, Point } from "../../types/general"
+import { line, zip } from "../../utils"
 
 type StyledProps = {
     x: number
@@ -40,16 +40,12 @@ const RenbanLine = ({ color, cells, thickness }: RenbanLineType) => {
     const centers = cells.map(([x, y]) => [x + 0.5, y + 0.5])
 
     const lineSegments: JSX.Element[] = []
-    for (const [[x0, y0], [x1, y1]] of zip(centers, centers.slice(1))) {
-        const length = Math.sqrt(Math.pow(x1 - x0, 2) + Math.pow(y1 - y0, 2))
-        const angle = Math.atan2(y0 - y1, x0 - x1) * (180 / Math.PI)
-
-        const x = (x0 + x1) / 2 - length / 2
-        const y = (y0 + y1) / 2
+    for (const [a, b] of zip(centers, centers.slice(1))) {
+        const [x, y, length, angle] = line(a as Point, b as Point)
 
         lineSegments.push(
             <StyledRenbanLine
-                key={`RenbanLine ${[x0, y0]}-${[x1, y1]}`}
+                key={`RenbanLine ${a}-${b}`}
                 x={x}
                 y={y}
                 length={length}

@@ -1,3 +1,4 @@
+import { Point } from "./types/general"
 
 export const genEmptyCells = (rows: number, columns: number) =>
 Array.from(Array(rows), (y: number) =>
@@ -20,6 +21,16 @@ values.map((row, y) =>
         editable: true
     }))
 )
+
+export const line = ([x0, y0]: Point, [x1, y1]: Point) => {
+    const length = Math.sqrt(Math.pow(x1 - x0, 2) + Math.pow(y1 - y0, 2))
+    const angle = Math.atan2(y0 - y1, x0 - x1) * (180 / Math.PI)
+
+    const x = (x0 + x1) / 2 - length / 2
+    const y = (y0 + y1) / 2
+
+    return [x, y, length, angle];
+}
 
 export function map2d<T, U>(array: T[][], fn: (value: T, x: number, y: number) => U) {
     return array.map((row, y) =>
