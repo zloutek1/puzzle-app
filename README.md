@@ -2,23 +2,39 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Supported puzzles
 
+[X] XV Sudoku
+[X] Kropki Sudoku
+[ ] Futoshiki
+[X] Sojuko
+
 [X] Sudoku
-[ ] Calcdoku / KenKen
-[ ] Consecutive Sudoku
 [X] Jigsaw sudoku
-[ ] Hitori
+[ ] Arrow Sudoku
+[ ] Thermo Sudoku
+
+[ ] SudokuX
+[ ] Palindrome Sudoku
+[X] Renban Sudoku
+
+[ ] Hyper Sudoku
+[ ] Calcdoku / KenKen
+[ ] RelativeDigitRegions
 [ ] Killer sudoku
-[ ] Killer sudoku Pro
+[ ] Killer sudoku PRO
+
+[ ] EvenOddSudoku
+[ ] Fortress
+
+[ ] Skyscraper
+[ ] XSum
+[ ] Nonogram
+[ ] Sandwich
+
+[ ] Consecutive Sudoku
+[ ] Hitori
 [ ] Odd pair sudoku
 [ ] Nurikabe
-[X] XV Sudoku
-[ ] Sudoku-X
-[ ] Futoshiki
-[ ] Skyscraper
 [ ] Kakuro
-[ ] Hanjie / Nonogram
-[X] Kropki
-[X] Sojuko
 
 ## Available Scripts
 
