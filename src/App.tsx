@@ -1,7 +1,9 @@
-import Sudoku from "./examples/Sudoku";
+import Kropki from "./examples/Kropki";
+import { puzzles } from "./examples/puzzles";
+import { Kropki as KropkiType } from "./types/decorations/between";
 
 function App() {
-  return <Sudoku rows={9} columns={9} />;
+  return puzzles[0]
 }
 
 export default App;

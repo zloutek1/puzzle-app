@@ -4,9 +4,10 @@ import JigsawSudoku from "./JigsawSudoku"
 type Props = {
     rows: number
     columns: number
+    values?: (number | null)[][]
 }
 
-const Sudoku = ({ rows, columns }: Props) => {
+const Sudoku = ({ rows, columns, values }: Props) => {
     const regions = [
         {type: "SudokuRegion", cells: [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]], unique: true},
         {type: "SudokuRegion", cells: [[0, 3], [0, 4], [0, 5], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]], unique: true},
@@ -19,7 +20,7 @@ const Sudoku = ({ rows, columns }: Props) => {
         {type: "SudokuRegion", cells: [[6, 6], [6, 7], [6, 8], [7, 6], [7, 7], [7, 8], [8, 6], [8, 7], [8, 8]], unique: true},
     ] as SudokuRegion[]
 
-    return <JigsawSudoku rows={rows} columns={columns} regions={regions} />
+    return <JigsawSudoku rows={rows} columns={columns} regions={regions} values={values} />
 }
 
 export default Sudoku
