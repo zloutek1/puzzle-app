@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Decorations as DecorationsType } from "../types/decorations"
+import { EvenOdds } from "./decorations/EvenOdd"
 import { Fortresses } from "./decorations/Fortresses"
 import { Kropkis } from "./decorations/Kropki"
 import { Palindromes, RenbanLines } from "./decorations/Line"
@@ -30,6 +31,7 @@ const Decorations = ({
         palindromes,
         sudokuXs,
         fortresses,
+        evenOdds
     },
 }: Props) => {
     return (
@@ -42,6 +44,7 @@ const Decorations = ({
             {sudokuXs && <SudokuXs sudokuXs={sudokuXs} />}
             {palindromes && <Palindromes palindromes={palindromes} />}
             {fortresses && <Fortresses fortresses={fortresses} />}
+            {evenOdds && <EvenOdds evenOdds={evenOdds} />}
         </StyledDecorations>
     )
 }

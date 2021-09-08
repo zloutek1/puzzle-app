@@ -22,7 +22,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] Killer sudoku
 - [ ] Killer sudoku PRO
 
-- [ ] EvenOddSudoku
+- [X] EvenOddSudoku
 - [X] Fortress
 
 - [ ] Skyscraper

@@ -1,3 +1,4 @@
+import EvenOddSudoku from "./EvenOddSudoku";
 import FortressSudoku from "./FortressSudoku";
 import Kropki from "./Kropki";
 import PalindromeSudoku from "./PalindromeSudoku";
@@ -183,5 +184,59 @@ export const puzzles = [
         {type: "Fortress", coords: [6, 7], inequality: "<", dimensions: {width: 50, height: 50}},
         {type: "Fortress", coords: [1, 8], inequality: "<", dimensions: {width: 50, height: 50}},
         {type: "Fortress", coords: [8, 8], inequality: "<", dimensions: {width: 50, height: 50}},
+    ]} />,
+
+    <EvenOddSudoku values={[
+        [null, null, null,  null,    9, null,  null,    4, null],
+        [null, null, null,     1, null, null,     7, null, null],
+        [null, null,    7,  null, null, null,  null,    5, null],
+
+        [null,    4, null,  null, null, null,     1, null, null],
+        [null, null, null,  null, null, null,  null, null, null],
+        [null, null,    3,  null, null, null,  null,    2, null],
+
+        [null,    9, null,  null, null, null,     8, null, null],
+        [null, null,    2,  null, null,    6,  null, null, null],
+        [null,    7, null,  null,    3, null,  null, null, null]
+    ]}
+
+    evenOdds={[
+        {type: "EvenOdd", coords: [2,0], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [5,0], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [8,0], parity: "odd", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [1,1], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [4,1], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [7,1], parity: "even", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [0,2], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [3,2], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [6,2], parity: "odd", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [2,3], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [5,3], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [8,3], parity: "odd", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [1,4], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [4,4], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [7,4], parity: "even", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [0,5], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [3,5], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [6,5], parity: "odd", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [2,6], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [4,6], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [8,6], parity: "even", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [1,7], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [4,7], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [7,7], parity: "odd", dimensions: {width: 40, height: 40}},
+
+        {type: "EvenOdd", coords: [0,8], parity: "odd", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [3,8], parity: "even", dimensions: {width: 40, height: 40}},
+        {type: "EvenOdd", coords: [6,8], parity: "even", dimensions: {width: 40, height: 40}},
     ]} />
+
+
 ]
