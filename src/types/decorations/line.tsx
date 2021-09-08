@@ -6,8 +6,9 @@ export interface Line extends Decoration {
     thickness: number
 }
 
-export interface SudokuXLine extends Line {
+export interface SudokuXLine extends Omit<Line, 'cells'> {
     type: "SudokuX"
+    diagonal: "left" | "right"
 }
 
 export interface PalindromeLine extends Line {

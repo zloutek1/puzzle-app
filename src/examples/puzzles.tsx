@@ -2,6 +2,7 @@ import Kropki from "./Kropki";
 import RenbanSudoku from "./RenbanLine";
 import Sojuko from "./Sojuko";
 import Sudoku from "./Sudoku";
+import SudokuX from "./SudokuX";
 import XV from "./XVSudoku";
 
 export const puzzles = [
@@ -128,5 +129,10 @@ export const puzzles = [
         {type: "Renban", cells: [[3,7],[4,8],[5,7]], thickness: 4},
         {type: "Renban", cells: [[8,8],[7,7],[6,6],[5,5]], thickness: 4},
         {type: "Renban", cells: [[7,3],[8,4],[7,5]], thickness: 4},
+    ]} />,
+
+    <SudokuX diagonals={[
+        {type: "SudokuX", diagonal: "left", thickness: 2},
+        {type: "SudokuX", diagonal: "right", thickness: 2}
     ]} />
 ]
