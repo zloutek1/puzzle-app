@@ -1,6 +1,7 @@
 import Game from "../components/Game"
 import { SudokuRegion } from "../types/decorations/region"
 import { Puzzle } from "../types/puzzle"
+import { genEmptyCells } from "./defaults"
 
 type Props = {
     rows: number
@@ -9,21 +10,11 @@ type Props = {
 }
 
 const JigsawSudoku = ({ rows, columns, regions }: Props) => {
-    const emptyCells = Array.from(Array(rows), (y: number) =>
-        Array.from(Array(columns), (x: number) => ({
-            x,
-            y,
-            value: 1,
-            highlight: "",
-            editable: true,
-        }))
-    )
-
     const rules = () => false
 
     const puzzle: Puzzle<number> = {
         type: "JigsawSudoku",
-        cells: emptyCells,
+        cells: genEmptyCells(rows, columns),
         decorations: [
             ...regions
         ],

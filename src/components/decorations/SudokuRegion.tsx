@@ -5,6 +5,7 @@ import { equals } from "../../utils"
 type StyledProps = {
     x: number
     y: number
+    thickness: number
     border: {
         top: boolean
         bottom: boolean
@@ -15,16 +16,26 @@ type StyledProps = {
 
 const StyledBorder = styled.div<StyledProps>`
     position: absolute;
-    top: calc(${({y}) => y} * 50px);
-    left: calc(${({x}) => x} * 50px);
+    top: calc(${({y, thickness}) => `${y} * 50px - ${thickness}px / 2`});
+    left: calc(${({x, thickness}) => `${x} * 50px - ${thickness}px / 2`});
     width: 50px;
     height: 50px;
 
-    box-sizing: border-box;
-    ${({ border: { top } }) => top ? 'border-top: 5px solid #000000;' : ''}
-    ${({ border: { bottom } }) => bottom ? 'border-bottom: 5px solid #000000;' : ''}
-    ${({ border: { left } }) => left ? 'border-left: 5px solid #000000;' : ''}
-    ${({ border: { right } }) => right ? 'border-right: 5px solid #000000;' : ''}
+    box-shadow:
+        ${({ border: { top },           color, thickness }) =>
+            top             ? `0 ${thickness}px 0 0 ${color ?? "#000000"} inset`        : `0 0 0 0 ${color ?? "#000000"} inset`},
+
+        ${({ border: { bottom },        color, thickness }) =>
+            bottom          ? `0 ${thickness}px 0 0 ${color ?? "#000000"}`              : `0 0 0 0 ${color ?? "#000000"}`},
+
+        ${({ border: { bottom, right }, color, thickness }) =>
+            bottom && right ? `${thickness}px ${thickness}px 0 0 ${color ?? "#000000"}` : `0 0 0 0 ${color ?? "#000000"}`}, // fix corner
+
+        ${({ border: { left },          color, thickness }) =>
+            left            ? `${thickness}px 0 0 0 ${color ?? "#000000"} inset`        : `0 0 0 0 ${color ?? "#000000"} inset`},
+
+        ${({ border: { right },         color, thickness }) =>
+            right           ? `${thickness}px 0 0 0 ${color ?? "#000000"}`              : `0 0 0 0 ${color ?? "#000000"}`};
 `
 
 const SudokuRegion = ({ cells }: SudokuRegionType) => {
@@ -45,7 +56,7 @@ const SudokuRegion = ({ cells }: SudokuRegionType) => {
     return (
         <div className="SudokuRegion">
             {cells.map(([x, y]) => (
-                <StyledBorder key={`region-${x}-${y}`} x={x} y={y} border={calculateBorder(x, y)} />
+                <StyledBorder key={`region-${x}-${y}`} x={x} y={y} thickness={5} border={calculateBorder(x, y)} />
             ))}
         </div>
     )
