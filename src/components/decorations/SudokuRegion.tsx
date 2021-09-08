@@ -5,6 +5,7 @@ import { equals } from "../../utils"
 type StyledProps = {
     x: number
     y: number
+    cellSize: number
     thickness: number
     border: {
         top: boolean
@@ -16,10 +17,10 @@ type StyledProps = {
 
 const StyledBorder = styled.div<StyledProps>`
     position: absolute;
-    top: calc(${({y, thickness}) => `${y} * 50px - ${thickness}px / 2`});
-    left: calc(${({x, thickness}) => `${x} * 50px - ${thickness}px / 2`});
-    width: 50px;
-    height: 50px;
+    top: calc(${({y, cellSize, thickness}) => `${y} * ${cellSize}px - ${thickness}px / 2`});
+    left: calc(${({x, cellSize, thickness}) => `${x} * ${cellSize}px - ${thickness}px / 2`});
+    width: ${({cellSize}) => cellSize}px;
+    height: ${({cellSize}) => cellSize}px;
 
     box-shadow:
         ${({ border: { top },           color, thickness }) =>
@@ -56,7 +57,7 @@ const SudokuRegion = ({ cells }: SudokuRegionType) => {
     return (
         <div className="SudokuRegion">
             {cells.map(([x, y]) => (
-                <StyledBorder key={`region-${x}-${y}`} x={x} y={y} thickness={5} border={calculateBorder(x, y)} />
+                <StyledBorder key={`region-${x}-${y}`} x={x} y={y} cellSize={50} thickness={5} border={calculateBorder(x, y)} />
             ))}
         </div>
     )

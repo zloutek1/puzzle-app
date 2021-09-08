@@ -5,8 +5,8 @@ import { Dimensions } from "../../types/general"
 type StyledProps = {
     x: number
     y: number
-    dimensions: Dimensions
     cellSize: number
+    dimensions: Dimensions
     target: number
 }
 
