@@ -1,7 +1,8 @@
 import Kropki from "./Kropki";
+import RenbanSudoku from "./RenbanLine";
 import Sojuko from "./Sojuko";
 import Sudoku from "./Sudoku";
-import XV from "./XV";
+import XV from "./XVSudoku";
 
 export const puzzles = [
     <Sudoku values={[
@@ -102,5 +103,30 @@ export const puzzles = [
         {type: "Sojuko", between: [[1,0], [2,0], [1,1], [2,1]], dimensions: {width: 30, height: 30}, target: 22},
         {type: "Sojuko", between: [[0,1], [1,1], [0,2], [1,2]], dimensions: {width: 30, height: 30}, target: 20},
         {type: "Sojuko", between: [[1,1], [2,1], [1,2], [2,2]], dimensions: {width: 30, height: 30}, target: 17},
+    ]} />,
+
+    <RenbanSudoku values={[
+        [null, null, null,     2, null,    7,  null, null, null],
+        [   1, null,    2,  null, null, null,     9, null, null],
+        [null,    8, null,  null, null, null,  null,    4, null],
+
+        [   9, null, null,  null, null, null,  null, null,    1],
+        [null, null, null,     5, null,    4,  null, null, null],
+        [   2, null, null,  null, null, null,  null, null,    9],
+
+        [null,    3, null,  null, null, null,  null,    1, null],
+        [null, null,    9,  null, null, null,     5, null,    8],
+        [null, null, null,     8, null,    6,  null, null, null]
+    ]}
+
+    renbanLines={[
+        {type: "Renban", cells: [[0,0],[1,1],[2,2],[3,3]], thickness: 4},
+        {type: "Renban", cells: [[3,1],[4,0],[5,1]], thickness: 4},
+        {type: "Renban", cells: [[8,0],[7,1],[6,2],[5,3]], thickness: 4},
+        {type: "Renban", cells: [[1,3],[0,4],[1,5]], thickness: 4},
+        {type: "Renban", cells: [[0,8],[1,7],[2,6],[3,5]], thickness: 4},
+        {type: "Renban", cells: [[3,7],[4,8],[5,7]], thickness: 4},
+        {type: "Renban", cells: [[8,8],[7,7],[6,6],[5,5]], thickness: 4},
+        {type: "Renban", cells: [[7,3],[8,4],[7,5]], thickness: 4},
     ]} />
 ]

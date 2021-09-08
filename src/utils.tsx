@@ -29,6 +29,8 @@ export function map2d<T, U>(array: T[][], fn: (value: T, x: number, y: number) =
     )
 }
 
+export const zip = <T, U>(a: T[], b: U[]) => Array.from(Array(Math.min(b.length, a.length)), (_, i) => [a[i], b[i]]);
+
 export function equals(x: any, y: any): boolean {
     const ok = Object.keys, tx = typeof x, ty = typeof y;
     return x && y && tx === 'object' && tx === ty ? (

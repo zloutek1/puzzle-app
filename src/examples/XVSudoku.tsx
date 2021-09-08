@@ -1,5 +1,5 @@
 import { DecorationType } from "../types/decorations"
-import { XV as XVType } from "../types/decorations/between"
+import { XV } from "../types/decorations/between"
 import Sudoku from "./Sudoku"
 
 type Props = {
@@ -9,11 +9,11 @@ type Props = {
     columns?: number
     values?: (number | null)[][]
 
-    xvs: XVType[]
+    xvs: XV[]
     decorations?: DecorationType[]
 }
 
-const XV = ({ type, rows, columns, values, xvs, decorations }: Props) => {
+const XVSudoku = ({ type, rows, columns, values, xvs, decorations }: Props) => {
     return (
         <Sudoku
             type={type ?? "XV Sudoku"}
@@ -25,4 +25,4 @@ const XV = ({ type, rows, columns, values, xvs, decorations }: Props) => {
     )
 }
 
-export default XV
+export default XVSudoku
