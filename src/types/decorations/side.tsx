@@ -18,6 +18,7 @@ export interface XSum extends SideDecoration {
 export interface Nonogram extends SideDecoration {
     type: "Nonogram"
     values: number[]
+    orientation: "up" | "left"
 }
 
 export interface Sandwich extends SideDecoration {

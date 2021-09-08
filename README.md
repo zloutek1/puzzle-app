@@ -27,7 +27,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - [X] Skyscraper
 - [ ] XSum
-- [ ] Nonogram
+- [X] Nonogram
 - [ ] Sandwich
 - [ ] Little killer sudoku
 

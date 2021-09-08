@@ -1,6 +1,7 @@
 import EvenOddSudoku from "./EvenOddSudoku";
 import FortressSudoku from "./FortressSudoku";
 import Kropki from "./Kropki";
+import Nonogram from "./Nonogram";
 import PalindromeSudoku from "./PalindromeSudoku";
 import RenbanSudoku from "./RenbanLine";
 import Skyscraper from "./Skyscraper";
@@ -257,6 +258,65 @@ export const puzzles = [
         {type: "Skyscraper", value: 1, position: 2, orientation: "left"},
         {type: "Skyscraper", value: 4, position: 3, orientation: "left"},
         {type: "Skyscraper", value: 2, position: 4, orientation: "left"},
+    ]} />,
+
+    <Nonogram rows={10} columns={10} nonograms={[
+        {type: "Nonogram", values: [1,4,1], position: 0, orientation: "up"},
+        {type: "Nonogram", values: [3,4,1], position: 1, orientation: "up"},
+        {type: "Nonogram", values: [1,3], position: 2, orientation: "up"},
+        {type: "Nonogram", values: [1,1], position: 3, orientation: "up"},
+        {type: "Nonogram", values: [3,1], position: 4, orientation: "up"},
+        {type: "Nonogram", values: [5], position: 5, orientation: "up"},
+        {type: "Nonogram", values: [5,1], position: 6, orientation: "up"},
+        {type: "Nonogram", values: [4,1,1], position: 7, orientation: "up"},
+        {type: "Nonogram", values: [5,1], position: 8, orientation: "up"},
+        {type: "Nonogram", values: [3], position: 9, orientation: "up"},
+
+        {type: "Nonogram", values: [3,5], position: 0, orientation: "left"},
+        {type: "Nonogram", values: [1,5], position: 1, orientation: "left"},
+        {type: "Nonogram", values: [1,6], position: 2, orientation: "left"},
+        {type: "Nonogram", values: [5], position: 3, orientation: "left"},
+        {type: "Nonogram", values: [2,4,1], position: 4, orientation: "left"},
+        {type: "Nonogram", values: [2,1], position: 5, orientation: "left"},
+        {type: "Nonogram", values: [3], position: 6, orientation: "left"},
+        {type: "Nonogram", values: [5,1], position: 7, orientation: "left"},
+        {type: "Nonogram", values: [1], position: 8, orientation: "left"},
+        {type: "Nonogram", values: [2,1,1], position: 9, orientation: "left"},
+    ]} />,
+
+    <Nonogram rows={15} columns={15} nonograms={[
+        {type: "Nonogram", values: [2], position: 0, orientation: "up"},
+        {type: "Nonogram", values: [2,1,2], position: 1, orientation: "up"},
+        {type: "Nonogram", values: [1,7,1], position: 2, orientation: "up"},
+        {type: "Nonogram", values: [1,3,1,1,1,3], position: 3, orientation: "up"},
+        {type: "Nonogram", values: [1,1,1,1,1,5,1,1], position: 4, orientation: "up"},
+        {type: "Nonogram", values: [5,1,3,1,1,1,4], position: 5, orientation: "up"},
+        {type: "Nonogram", values: [3,1,10], position: 6, orientation: "up"},
+        {type: "Nonogram", values: [3,11], position: 7, orientation: "up"},
+        {type: "Nonogram", values: [3,1,10], position: 8, orientation: "up"},
+        {type: "Nonogram", values: [5,1,3,1,1,1,4], position: 9, orientation: "up"},
+        {type: "Nonogram", values: [1,1,1,1,1,5,1,1], position: 10, orientation: "up"},
+        {type: "Nonogram", values: [1,3,1,1,1,3], position: 11, orientation: "up"},
+        {type: "Nonogram", values: [1,7,1], position: 12, orientation: "up"},
+        {type: "Nonogram", values: [2,1,2], position: 13, orientation: "up"},
+        {type: "Nonogram", values: [2], position: 14, orientation: "up"},
+
+        {type: "Nonogram", values: [2,2], position: 0, orientation: "left"},
+        {type: "Nonogram", values: [1,1], position: 1, orientation: "left"},
+        {type: "Nonogram", values: [5], position: 2, orientation: "left"},
+        {type: "Nonogram", values: [5], position: 3, orientation: "left"},
+        {type: "Nonogram", values: [7], position: 4, orientation: "left"},
+        {type: "Nonogram", values: [1,9,1], position: 5, orientation: "left"},
+        {type: "Nonogram", values: [2,4,1,4,2], position: 6, orientation: "left"},
+        {type: "Nonogram", values: [2,1,2,1,2,1,2], position: 7, orientation: "left"},
+        {type: "Nonogram", values: [1,1,1,1,1,1,1,1,1,1,1], position: 8, orientation: "left"},
+        {type: "Nonogram", values: [2,5,1,5,2], position: 9, orientation: "left"},
+        {type: "Nonogram", values: [1,1,1,1,1,1,1,1,1,1,1,1,1], position: 10, orientation: "left"},
+        {type: "Nonogram", values: [5,1,5], position: 11, orientation: "left"},
+        {type: "Nonogram", values: [2,1,2,1,2,1,2], position: 12, orientation: "left"},
+        {type: "Nonogram", values: [2,4,1,4,2], position: 13, orientation: "left"},
+        {type: "Nonogram", values: [1,2,1,2,1], position: 14, orientation: "left"},
     ]} />
+
 
 ]
