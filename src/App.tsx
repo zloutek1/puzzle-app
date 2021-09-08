@@ -1,12 +1,7 @@
-import './App.css';
-import { Game } from './components/base/Game';
+import Sudoku from "./examples/Sudoku";
 
 function App() {
-  return (
-    <div className="App">
-      <Game width={9} height={9}/>
-    </div>
-  );
+  return <Sudoku rows={9} columns={9} />;
 }
 
 export default App;
