@@ -12,8 +12,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 [ ] Arrow Sudoku
 [ ] Thermo Sudoku
 
-[ ] SudokuX
-[ ] Palindrome Sudoku
+[X] SudokuX
+[X] Palindrome Sudoku
 [X] Renban Sudoku
 
 [ ] Hyper Sudoku

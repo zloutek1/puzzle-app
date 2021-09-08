@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { RenbanLine as RenbanLineType } from "../../types/decorations/line"
+import { Line as LineType } from "../../types/decorations/line"
 import { Color, Point } from "../../types/general"
 import { line, zip } from "../../utils"
 
@@ -13,6 +13,10 @@ type StyledProps = {
     color: Color
 
     cellSize: number
+}
+
+type Props = LineType & {
+    className: string
 }
 
 const StyledRenbanLine = styled.div<StyledProps>`
@@ -34,7 +38,7 @@ const StyledRenbanLine = styled.div<StyledProps>`
     `}
 `
 
-const RenbanLine = ({ color, cells, thickness }: RenbanLineType) => {
+const Line = ({ className, color, cells, thickness }: Props) => {
     color = color ?? "gray"
 
     const centers = cells.map(([x, y]) => [x + 0.5, y + 0.5])
@@ -45,7 +49,7 @@ const RenbanLine = ({ color, cells, thickness }: RenbanLineType) => {
 
         lineSegments.push(
             <StyledRenbanLine
-                key={`RenbanLine ${a}-${b}`}
+                key={`Line ${a}-${b}`}
                 x={x}
                 y={y}
                 length={length}
@@ -57,7 +61,7 @@ const RenbanLine = ({ color, cells, thickness }: RenbanLineType) => {
         )
     }
 
-    return <div className="RenbanLine">{lineSegments}</div>
+    return <div className={className}>{lineSegments}</div>
 }
 
-export default RenbanLine
+export default Line

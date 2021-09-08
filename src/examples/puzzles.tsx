@@ -1,4 +1,5 @@
 import Kropki from "./Kropki";
+import PalindromeSudoku from "./PalindromeSudoku";
 import RenbanSudoku from "./RenbanLine";
 import Sojuko from "./Sojuko";
 import Sudoku from "./Sudoku";
@@ -134,5 +135,23 @@ export const puzzles = [
     <SudokuX diagonals={[
         {type: "SudokuX", diagonal: "left", thickness: 2},
         {type: "SudokuX", diagonal: "right", thickness: 2}
+    ]} />,
+
+    <PalindromeSudoku values={[
+        [null,    2, null,  null, null, null,  null,    4, null],
+        [   6, null, null,  null, null, null,  null, null,    3],
+        [null, null, null,  null, null,    7,  null, null, null],
+
+        [null, null,    1,  null, null, null,     9, null, null],
+        [null, null, null,  null, null, null,  null, null, null],
+        [null, null,    9,  null, null, null,     3, null, null],
+
+        [null, null, null,     7, null, null,  null, null, null],
+        [null, null, null,  null, null, null,  null, null,    5],
+        [null,    4, null,  null, null, null,  null, null, null]
+    ]}
+
+    palindromeLines={[
+        {type: "Palindrome", cells: [[5,8],[6,8],[7,7],[8,6],[8,5],[8,4],[8,3],[8,2],[7,1],[6,0],[5,0],[4,0],[3,0],[2,1],[1,2],[0,3],[0,4],[0,5],[1,6],[2,7],[3,7],[4,6],[5,5],[5,4],[4,3],[3,4]], thickness: 4}
     ]} />
 ]
