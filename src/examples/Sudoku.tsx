@@ -1,13 +1,16 @@
+import { DecorationType } from "../types/decorations"
 import { SudokuRegion } from "../types/decorations/region"
 import JigsawSudoku from "./JigsawSudoku"
 
 type Props = {
-    rows: number
-    columns: number
+    type?: string
+    rows?: number
+    columns?: number
     values?: (number | null)[][]
+    decorations?: DecorationType[]
 }
 
-const Sudoku = ({ rows, columns, values }: Props) => {
+const Sudoku = ({ type, rows, columns, values, decorations }: Props) => {
     const regions = [
         {type: "SudokuRegion", cells: [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]], unique: true},
         {type: "SudokuRegion", cells: [[0, 3], [0, 4], [0, 5], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]], unique: true},
@@ -20,7 +23,16 @@ const Sudoku = ({ rows, columns, values }: Props) => {
         {type: "SudokuRegion", cells: [[6, 6], [6, 7], [6, 8], [7, 6], [7, 7], [7, 8], [8, 6], [8, 7], [8, 8]], unique: true},
     ] as SudokuRegion[]
 
-    return <JigsawSudoku rows={rows} columns={columns} regions={regions} values={values} />
+    return (
+        <JigsawSudoku
+            type={type ?? "Sudoku"}
+            rows={rows ?? 9}
+            columns={columns ?? 9}
+            regions={regions}
+            values={values}
+            decorations={decorations}
+        />
+    )
 }
 
 export default Sudoku

@@ -1,7 +1,7 @@
 import Game from "../components/Game"
 import { Kropki as KropkiType } from "../types/decorations/between"
 import { Puzzle } from "../types/puzzle"
-import { genEmptyCells } from "./defaults"
+import { genEmptyCells } from "../utils"
 
 type Props = {
     rows: number

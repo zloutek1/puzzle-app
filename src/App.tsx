@@ -1,9 +1,7 @@
-import Kropki from "./examples/Kropki";
 import { puzzles } from "./examples/puzzles";
-import { Kropki as KropkiType } from "./types/decorations/between";
 
 function App() {
-  return puzzles[0]
+  return puzzles[2]
 }
 
 export default App;
