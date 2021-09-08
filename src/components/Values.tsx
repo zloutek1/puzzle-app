@@ -5,23 +5,25 @@ import Cell from "./Cell"
 type StyledProps = {
     rows: number
     columns: number
+    cellSize: number
 }
 
 type Props<T> = {
     rows: number
     columns: number
     cells: CellType<T>[][]
+    cellSize: number
 }
 
 const StyledValues = styled.div<StyledProps>`
     display: grid;
-    grid-template-columns: repeat(${({ columns }) => columns}, 50px);
-    grid-template-rows: repeat(${({ rows }) => rows}, 50px);
+    grid-template-columns: ${({ columns, cellSize }) => `repeat(${columns}, ${cellSize}px);`}
+    grid-template-rows: ${({ rows, cellSize }) => `repeat(${rows}, ${cellSize}px);`}
 `
 
-const Values = <T,>({ rows, columns, cells }: Props<T>) => {
+const Values = <T,>({ rows, columns, cells, cellSize }: Props<T>) => {
     return (
-        <StyledValues className="Values" rows={rows} columns={columns}>
+        <StyledValues className="Values" rows={rows} columns={columns} cellSize={cellSize}>
             {cells.map((row, y) =>
                 row.map((cell, x) => <Cell key={`cell-${x}-${y}`} {...cell} />)
             )}

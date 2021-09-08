@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { SudokuRegion as SudokuRegionType } from "../../types/decorations/region"
+import { BoardContext } from "../../types/general"
 import { equals } from "../../utils"
 
 type StyledProps = {
@@ -39,34 +40,45 @@ const StyledBorder = styled.div<StyledProps>`
             right           ? `${thickness}px 0 0 0 ${color ?? "#000000"}`              : `0 0 0 0 ${color ?? "#000000"}`};
 `
 
-export const SudokuRegion = ({ cells }: SudokuRegionType) => {
+type Props = {
+    context: BoardContext
+}
+
+export const SudokuRegion = ({ cells, context }: SudokuRegionType & Props) => {
     const calculateBorder = (x: number, y: number) => {
-        const isUp = cells.find(cell => equals(cell, [x, y - 1]))
-        const isDown = cells.find(cell => equals(cell, [x, y + 1]))
-        const isLeft = cells.find(cell => equals(cell, [x - 1, y]))
-        const isRight = cells.find(cell => equals(cell, [x + 1, y]))
+        const isUp = cells.find((cell) => equals(cell, [x, y - 1]))
+        const isDown = cells.find((cell) => equals(cell, [x, y + 1]))
+        const isLeft = cells.find((cell) => equals(cell, [x - 1, y]))
+        const isRight = cells.find((cell) => equals(cell, [x + 1, y]))
 
         return {
             top: isUp === undefined,
             bottom: isDown === undefined,
             left: isLeft === undefined,
-            right: isRight === undefined
+            right: isRight === undefined,
         }
     }
 
     return (
         <div className="SudokuRegion">
             {cells.map(([x, y]) => (
-                <StyledBorder key={`region-${x}-${y}`} x={x} y={y} cellSize={50} thickness={5} border={calculateBorder(x, y)} />
+                <StyledBorder
+                    key={`region-${x}-${y}`}
+                    x={x}
+                    y={y}
+                    cellSize={context.cellSize}
+                    thickness={5}
+                    border={calculateBorder(x, y)}
+                />
             ))}
         </div>
     )
 }
 
-export const SudokuRegions = ({ sudokuRegions }: { sudokuRegions: SudokuRegionType[] }) => (
+export const SudokuRegions = ({ sudokuRegions, context }: { sudokuRegions: SudokuRegionType[] } & Props) => (
     <div className="SudokuRegions">
         {sudokuRegions.map((region, i) =>
-            <SudokuRegion key={`Region-${i}`} {...region} />
+            <SudokuRegion key={`Region-${i}`} {...region} context={context} />
         )}
     </div>
 )

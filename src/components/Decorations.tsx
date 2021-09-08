@@ -1,9 +1,11 @@
 import styled from "styled-components"
 import { Decorations as DecorationsType } from "../types/decorations"
+import { BoardContext } from "../types/general"
 import { EvenOdds } from "./decorations/EvenOdd"
 import { Fortresses } from "./decorations/Fortresses"
 import { Kropkis } from "./decorations/Kropki"
 import { Palindromes, RenbanLines } from "./decorations/Line"
+import { Nonograms } from "./decorations/Nonogram"
 import { Skyscrapers } from "./decorations/Skyscraper"
 import { Sojukos } from "./decorations/Sojuko"
 import { SudokuRegions } from "./decorations/SudokuRegion"
@@ -14,6 +16,7 @@ type StyledProps = {}
 
 type Props = {
     decorations: DecorationsType
+    context: BoardContext
 }
 
 const StyledDecorations = styled.div<StyledProps>`
@@ -33,21 +36,24 @@ const Decorations = ({
         sudokuXs,
         fortresses,
         evenOdds,
-        skyscrapers
+        skyscrapers,
+        nonograms
     },
+    context
 }: Props) => {
     return (
         <StyledDecorations className="Decorations">
-            {sudokuRegions && <SudokuRegions sudokuRegions={sudokuRegions} />}
-            {kropkis && <Kropkis kropkis={kropkis} />}
-            {xvs && <XVs xvs={xvs} />}
-            {sojukos && <Sojukos sojukos={sojukos} />}
-            {renbanLines && <RenbanLines renbanLines={renbanLines} />}
-            {sudokuXs && <SudokuXs sudokuXs={sudokuXs} />}
-            {palindromes && <Palindromes palindromes={palindromes} />}
-            {fortresses && <Fortresses fortresses={fortresses} />}
-            {evenOdds && <EvenOdds evenOdds={evenOdds} />}
-            {skyscrapers && <Skyscrapers skyscrapers={skyscrapers} />}
+            {sudokuRegions && <SudokuRegions sudokuRegions={sudokuRegions} context={context} />}
+            {kropkis &&       <Kropkis kropkis={kropkis} context={context} />}
+            {xvs &&           <XVs xvs={xvs} context={context} />}
+            {sojukos &&       <Sojukos sojukos={sojukos} context={context} />}
+            {renbanLines &&   <RenbanLines renbanLines={renbanLines} context={context} />}
+            {sudokuXs &&      <SudokuXs sudokuXs={sudokuXs} context={context} />}
+            {palindromes &&   <Palindromes palindromes={palindromes} context={context} />}
+            {fortresses &&    <Fortresses fortresses={fortresses} context={context} />}
+            {evenOdds &&      <EvenOdds evenOdds={evenOdds} context={context} />}
+            {skyscrapers &&   <Skyscrapers skyscrapers={skyscrapers} context={context} />}
+            {nonograms &&     <Nonograms nonograms={nonograms} context={context} />}
         </StyledDecorations>
     )
 }

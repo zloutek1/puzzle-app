@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Fortress as FortressType } from "../../types/decorations/shape"
-import { Color, Dimensions } from "../../types/general"
+import { BoardContext, Color, Dimensions } from "../../types/general"
 import { equals } from "../../utils"
 
 type StyledProps = {
@@ -43,7 +43,11 @@ const StyledArrow = styled.div`
     &.right  { grid-area: right;  transform: rotate(180deg);  }
 `
 
-type Props = {
+type ContextProp = {
+    context: BoardContext
+}
+
+type Props = ContextProp & {
     neighbours: {
         top: boolean,
         bottom: boolean,
@@ -52,7 +56,7 @@ type Props = {
     }
 }
 
-export const Fortress = ({ coords, dimensions, inequality, color, neighbours }: FortressType & Props) => {
+export const Fortress = ({ coords, dimensions, inequality, color, neighbours, context }: FortressType & Props) => {
     color = color ?? "gray"
 
     return (
@@ -62,7 +66,7 @@ export const Fortress = ({ coords, dimensions, inequality, color, neighbours }: 
             y={coords[1]}
             dimensions={dimensions}
             color={color}
-            cellSize={50}
+            cellSize={context.cellSize}
         >
             {neighbours.top && <StyledArrow className="top">{inequality}</StyledArrow>}
             {neighbours.bottom && <StyledArrow className="bottom">{inequality}</StyledArrow>}
@@ -72,7 +76,7 @@ export const Fortress = ({ coords, dimensions, inequality, color, neighbours }: 
     )
 }
 
-export const Fortresses = ({ fortresses }: { fortresses: FortressType[] }) => {
+export const Fortresses = ({ fortresses, context }: { fortresses: FortressType[] } & ContextProp) => {
     const rows = 9;
     const columns = 9;
 
@@ -97,6 +101,7 @@ export const Fortresses = ({ fortresses }: { fortresses: FortressType[] }) => {
                     key={`fortress-${i}`}
                     {...fortress}
                     neighbours={calculateNeighbours(...fortress.coords)}
+                    context={context}
                 />
             ))}
         </div>

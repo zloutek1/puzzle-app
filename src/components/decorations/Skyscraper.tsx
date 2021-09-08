@@ -1,51 +1,43 @@
 import styled from "styled-components"
 import { Skyscraper as SkyscraperType } from "../../types/decorations/side"
+import { BoardContext } from "../../types/general"
 
 type StyledProps = {
     x: number
     y: number
 
-    cellSize: number
-    width: number
-    height: number
+    context: BoardContext
 }
 
 
 const StyledSkyscraper = styled.div<StyledProps>`
     position: absolute;
-    top:  calc(${({y, cellSize}) => `${y} * ${cellSize}px`});
-    left: calc(${({x, cellSize}) => `${x} * ${cellSize}px`});
-    width:  ${({cellSize}) => cellSize}px;
-    height: ${({cellSize}) => cellSize}px;
+    top:  calc(${({y, context: {cellSize}}) => `${y} * ${cellSize}px`});
+    left: calc(${({x, context: {cellSize}}) => `${x} * ${cellSize}px`});
+    width:  ${({context: {cellSize}}) => cellSize}px;
+    height: ${({context: {cellSize}}) => cellSize}px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 `
 
-export const Skyscraper = ({ value, position, orientation }: SkyscraperType) => {
-    const width=5
-    const height=5
+type Props = {
+    context: BoardContext
+}
 
-    let x, y
-    switch (orientation) {
-        case "up":
-            x = position
-            y = -1
-            break
-        case "right":
-            x = width
-            y = position
-            break
-        case "down":
-            x = width - position  - 1
-            y = height
-            break
-        case "left":
-            x = -1
-            y = height - position - 1
-            break
+export const Skyscraper = ({ value, position, orientation, context }: SkyscraperType & Props) => {
+    const { boardRows, boardColumns, cellSize } = context;
+
+    const getCoords = (orientation: "up" | "down"| "left" | "right") => {
+        switch (orientation) {
+            case "up": return [position, -1]
+            case "right": return [boardColumns, position]
+            case "down": return [boardColumns - position  - 1, boardRows]
+            case "left": return [-1, boardRows - position - 1]
+        }
     }
+    const [x, y] = getCoords(orientation)
 
     return (
         <StyledSkyscraper
@@ -53,19 +45,17 @@ export const Skyscraper = ({ value, position, orientation }: SkyscraperType) => 
             x={x}
             y={y}
 
-            cellSize={50}
-            width={width}
-            height={height}
+            context={context}
         >
             {value}
         </StyledSkyscraper>
     )
 }
 
-export const Skyscrapers = ({ skyscrapers }: { skyscrapers: SkyscraperType[] }) => (
+export const Skyscrapers = ({ skyscrapers, context }: { skyscrapers: SkyscraperType[] } & Props) => (
     <div className="Skyscrapers">
         {skyscrapers.map((skyscraper, i) => (
-            <Skyscraper key={`Skyscraper-${i}`} {...skyscraper} />
+            <Skyscraper key={`Skyscraper-${i}`} {...skyscraper} context={context} />
         ))}
     </div>
 )

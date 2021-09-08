@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Line as LineType, PalindromeLine as PalindromeLineType, RenbanLine as RenbanLineType } from "../../types/decorations/line"
-import { Color, Point } from "../../types/general"
+import { BoardContext, Color, Point } from "../../types/general"
 import { line, zip } from "../../utils"
 
 type StyledProps = {
@@ -15,7 +15,11 @@ type StyledProps = {
     cellSize: number
 }
 
-type Props = LineType & {
+type ContextProp = {
+     context: BoardContext
+}
+
+type Props = LineType & ContextProp & {
     className: string
 }
 
@@ -38,7 +42,7 @@ const StyledRenbanLine = styled.div<StyledProps>`
     `}
 `
 
-export const Line = ({ className, color, cells, thickness }: Props) => {
+export const Line = ({ className, color, cells, thickness, context }: Props) => {
     color = color ?? "gray"
 
     const centers = cells.map(([x, y]) => [x + 0.5, y + 0.5])
@@ -56,7 +60,7 @@ export const Line = ({ className, color, cells, thickness }: Props) => {
                 angle={angle}
                 thickness={thickness}
                 color={color}
-                cellSize={50}
+                cellSize={context.cellSize}
             />
         )
     }
@@ -64,26 +68,26 @@ export const Line = ({ className, color, cells, thickness }: Props) => {
     return <div className={className}>{lineSegments}</div>
 }
 
-export const RenbanLine = (props: RenbanLineType) => (
+export const RenbanLine = (props: RenbanLineType & ContextProp) => (
     <Line className="RenbanLine" {...props} />
 )
 
-export const RenbanLines = ({ renbanLines }: { renbanLines: RenbanLineType[] }) => (
+export const RenbanLines = ({ renbanLines, context }: { renbanLines: RenbanLineType[] } & ContextProp) => (
     <div className="RenbanLines">
         {renbanLines.map((renbanLine, i) =>
-            <RenbanLine  key={`Renban-${i}`} {...renbanLine} />
+            <RenbanLine  key={`Renban-${i}`} {...renbanLine} context={context} />
         )}
     </div>
 )
 
-export const PalindromeLine = (props: PalindromeLineType) => (
+export const PalindromeLine = (props: PalindromeLineType & ContextProp) => (
     <Line className="PalindromeLine" {...props} />
 )
 
-export const Palindromes = ({ palindromes }: { palindromes: PalindromeLineType[] }) => (
+export const Palindromes = ({ palindromes, context }: { palindromes: PalindromeLineType[] } & ContextProp) => (
     <div className="PalindromeLines">
         {palindromes.map((palindrome, i) =>
-            <PalindromeLine  key={`Palindrome-${i}`} {...palindrome} />
+            <PalindromeLine  key={`Palindrome-${i}`} {...palindrome} context={context} />
         )}
     </div>
 )

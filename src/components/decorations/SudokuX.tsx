@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { SudokuXLine as SudokuXLineType } from "../../types/decorations/line"
-import { Color } from "../../types/general"
+import { BoardContext, Color } from "../../types/general"
 import { line } from "../../utils"
 
 type StyledProps = {
@@ -34,19 +34,22 @@ const StyledSudokuXLine = styled.div<StyledProps>`
     `}
 `
 
-export const SudokuXLine = ({ color, thickness, diagonal }: SudokuXLineType) => {
+type Props = {
+    context: BoardContext
+}
+
+export const SudokuXLine = ({ color, thickness, diagonal, context }: SudokuXLineType & Props) => {
     color = color ?? "gray"
 
-    const rows = 9
-    const columns = 9
+    const {boardRows, boardColumns, cellSize} = context
 
     let x, y, length, angle
     switch (diagonal) {
         case "left":
-            ;[x, y, length, angle] = line([0, 0], [columns, rows])
+            ;[x, y, length, angle] = line([0, 0], [boardColumns, boardRows])
             break
         case "right":
-            ;[x, y, length, angle] = line([0, rows], [columns, 0])
+            ;[x, y, length, angle] = line([0, boardRows], [boardColumns, 0])
             break
     }
 
@@ -59,15 +62,15 @@ export const SudokuXLine = ({ color, thickness, diagonal }: SudokuXLineType) => 
             angle={angle}
             thickness={thickness}
             color={color}
-            cellSize={50}
+            cellSize={cellSize}
         />
     )
 }
 
-export const SudokuXs = ({ sudokuXs }: { sudokuXs: SudokuXLineType[] }) => (
+export const SudokuXs = ({ sudokuXs, context }: { sudokuXs: SudokuXLineType[] } & Props) => (
     <div className="SudokuXs">
         {sudokuXs.map((sudokuX, i) =>
-            <SudokuXLine key={`SudokuX-${i}`} {...sudokuX} />
+            <SudokuXLine key={`SudokuX-${i}`} {...sudokuX} context={context} />
         )}
     </div>
 )

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Kropki as KropkiType } from "../../types/decorations/between"
-import { Color, Dimensions } from "../../types/general"
+import { BoardContext, Color, Dimensions } from "../../types/general"
 
 type StyledProps = {
     x: number
@@ -22,18 +22,22 @@ const StyledKropki = styled.div<StyledProps>`
     background-color: ${({ color }) => color};
 `
 
-export const Kropki = ({ between, dimensions, color }: KropkiType) => {
+type Props = {
+    context: BoardContext
+}
+
+export const Kropki = ({ between, dimensions, color, context }: KropkiType & Props) => {
     const [[x0, y0], [x1, y1]] = between
     const x = x0 + (x1 - x0) / 2
     const y = y0 + (y1 - y0) / 2
 
-    return <StyledKropki x={x} y={y} dimensions={dimensions} color={color} cellSize={50} />
+    return <StyledKropki x={x} y={y} dimensions={dimensions} color={color} cellSize={context.cellSize} />
 }
 
-export const Kropkis = ({ kropkis }: { kropkis: KropkiType[] }) => (
+export const Kropkis = ({ kropkis, context }: { kropkis: KropkiType[] } & Props) => (
     <div className="Kropkis">
         {kropkis.map((kropki, i) =>
-            <Kropki key={`Kropki-${i}`} {...kropki} />
+            <Kropki key={`Kropki-${i}`} {...kropki} context={context} />
         )}
     </div>
 )
