@@ -4,6 +4,7 @@ import { EvenOdds } from "./decorations/EvenOdd"
 import { Fortresses } from "./decorations/Fortresses"
 import { Kropkis } from "./decorations/Kropki"
 import { Palindromes, RenbanLines } from "./decorations/Line"
+import { Skyscrapers } from "./decorations/Skyscraper"
 import { Sojukos } from "./decorations/Sojuko"
 import { SudokuRegions } from "./decorations/SudokuRegion"
 import { SudokuXs } from "./decorations/SudokuX"
@@ -31,7 +32,8 @@ const Decorations = ({
         palindromes,
         sudokuXs,
         fortresses,
-        evenOdds
+        evenOdds,
+        skyscrapers
     },
 }: Props) => {
     return (
@@ -45,6 +47,7 @@ const Decorations = ({
             {palindromes && <Palindromes palindromes={palindromes} />}
             {fortresses && <Fortresses fortresses={fortresses} />}
             {evenOdds && <EvenOdds evenOdds={evenOdds} />}
+            {skyscrapers && <Skyscrapers skyscrapers={skyscrapers} />}
         </StyledDecorations>
     )
 }

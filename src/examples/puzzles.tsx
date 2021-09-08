@@ -3,6 +3,7 @@ import FortressSudoku from "./FortressSudoku";
 import Kropki from "./Kropki";
 import PalindromeSudoku from "./PalindromeSudoku";
 import RenbanSudoku from "./RenbanLine";
+import Skyscraper from "./Skyscraper";
 import Sojuko from "./Sojuko";
 import Sudoku from "./Sudoku";
 import SudokuX from "./SudokuX";
@@ -236,7 +237,26 @@ export const puzzles = [
         {type: "EvenOdd", coords: [0,8], parity: "odd", dimensions: {width: 40, height: 40}},
         {type: "EvenOdd", coords: [3,8], parity: "even", dimensions: {width: 40, height: 40}},
         {type: "EvenOdd", coords: [6,8], parity: "even", dimensions: {width: 40, height: 40}},
-    ]} />
+    ]} />,
 
+    <Skyscraper rows={5} columns={5} skyscrapers={[
+        {type: "Skyscraper", value: 1, position: 1, orientation: "up"},
+        {type: "Skyscraper", value: 3, position: 2, orientation: "up"},
+        {type: "Skyscraper", value: 2, position: 3, orientation: "up"},
+        {type: "Skyscraper", value: 3, position: 4, orientation: "up"},
+
+        {type: "Skyscraper", value: 2, position: 0, orientation: "right"},
+        {type: "Skyscraper", value: 2, position: 1, orientation: "right"},
+        {type: "Skyscraper", value: 5, position: 2, orientation: "right"},
+        {type: "Skyscraper", value: 1, position: 4, orientation: "right"},
+
+        {type: "Skyscraper", value: 1, position: 0, orientation: "down"},
+        {type: "Skyscraper", value: 2, position: 2, orientation: "down"},
+        {type: "Skyscraper", value: 3, position: 3, orientation: "down"},
+
+        {type: "Skyscraper", value: 1, position: 2, orientation: "left"},
+        {type: "Skyscraper", value: 4, position: 3, orientation: "left"},
+        {type: "Skyscraper", value: 2, position: 4, orientation: "left"},
+    ]} />
 
 ]

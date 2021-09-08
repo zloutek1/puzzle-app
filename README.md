@@ -25,7 +25,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [X] EvenOddSudoku
 - [X] Fortress
 
-- [ ] Skyscraper
+- [X] Skyscraper
 - [ ] XSum
 - [ ] Nonogram
 - [ ] Sandwich
