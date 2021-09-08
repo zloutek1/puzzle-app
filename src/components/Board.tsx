@@ -1,6 +1,7 @@
+import styled from "styled-components"
 import { DecorationType } from "../types/decorations"
 import { Cell as CellType } from "../types/puzzle"
-import Decoration from "./Decoration"
+import Decorations from "./Decorations"
 import Values from "./Values"
 
 type Props<T> = {
@@ -8,18 +9,19 @@ type Props<T> = {
     decorations: DecorationType[]
 }
 
+const StyledBoard = styled.div`
+    position: relative;
+`
 
 const Board = <T,>({ cells, decorations }: Props<T>) => {
     const columns = cells[0].length
     const rows = cells.length
 
     return (
-        <div className="Board">
+        <StyledBoard className="Board">
             <Values rows={rows} columns={columns} cells={cells} />
-            <div className="Decorations">
-                {decorations.map((decoration, i) => <Decoration key={`decoration-${i}`} decoration={decoration} />)}
-            </div>
-        </div>
+            <Decorations decorations={decorations} />
+        </StyledBoard>
     )
 }
 

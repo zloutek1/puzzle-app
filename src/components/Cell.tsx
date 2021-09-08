@@ -13,6 +13,11 @@ const StyledCell = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    box-sizing: border-box;
+    border: 1px solid #000000;
+
+    cursor: pointer;
 `
 
 const Cell = <T,>({ x, y, value, highlight, editable }: Props<T>) => {
