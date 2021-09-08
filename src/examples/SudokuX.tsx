@@ -1,4 +1,4 @@
-import { DecorationType } from "../types/decorations"
+import { Decorations } from "../types/decorations"
 import { SudokuXLine } from "../types/decorations/line"
 import Sudoku from "./Sudoku"
 
@@ -10,7 +10,7 @@ type Props = {
     values?: (number | null)[][]
 
     diagonals: SudokuXLine[]
-    decorations?: DecorationType[]
+    decorations?: Decorations
 }
 
 const SudokuX = ({ type, rows, columns, values, diagonals, decorations }: Props) => {
@@ -20,7 +20,10 @@ const SudokuX = ({ type, rows, columns, values, diagonals, decorations }: Props)
             rows={rows}
             columns={columns}
             values={values}
-            decorations={(diagonals as DecorationType[]).concat(decorations ?? [])}
+            decorations={{
+                sudokuXs: diagonals,
+                ...(decorations ?? {})
+            }}
         />
     )
 }

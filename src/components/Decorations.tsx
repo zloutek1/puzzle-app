@@ -1,13 +1,16 @@
 import styled from "styled-components"
-import { DecorationType } from "../types/decorations"
-import Decoration from "./decorations/Decoration"
+import { Decorations as DecorationsType } from "../types/decorations"
+import { Kropkis } from "./decorations/Kropki"
+import { Palindromes, RenbanLines } from "./decorations/Line"
+import { Sojukos } from "./decorations/Sojuko"
+import { SudokuRegions } from "./decorations/SudokuRegion"
+import { SudokuXs } from "./decorations/SudokuX"
+import { XVs } from "./decorations/XV"
 
-type StyledProps = {
-
-}
+type StyledProps = {}
 
 type Props = {
-    decorations: DecorationType[]
+    decorations: DecorationsType
 }
 
 const StyledDecorations = styled.div<StyledProps>`
@@ -16,10 +19,26 @@ const StyledDecorations = styled.div<StyledProps>`
     }
 `
 
-const Decorations = ({ decorations }: Props) => {
+const Decorations = ({
+    decorations: {
+        sudokuRegions,
+        kropkis,
+        xvs,
+        sojukos,
+        renbanLines,
+        palindromes,
+        sudokuXs,
+    },
+}: Props) => {
     return (
         <StyledDecorations className="Decorations">
-            {decorations.map((decoration, i) => <Decoration key={`decoration-${i}`} decoration={decoration} />)}
+            {sudokuRegions && <SudokuRegions sudokuRegions={sudokuRegions} />}
+            {kropkis && <Kropkis kropkis={kropkis} />}
+            {xvs && <XVs xvs={xvs} />}
+            {sojukos && <Sojukos sojukos={sojukos} />}
+            {renbanLines && <RenbanLines renbanLines={renbanLines} />}
+            {sudokuXs && <SudokuXs sudokuXs={sudokuXs} />}
+            {palindromes && <Palindromes palindromes={palindromes} />}
         </StyledDecorations>
     )
 }

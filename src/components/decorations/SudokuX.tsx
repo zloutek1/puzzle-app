@@ -34,7 +34,7 @@ const StyledSudokuXLine = styled.div<StyledProps>`
     `}
 `
 
-const SudokuXLine = ({ color, thickness, diagonal }: SudokuXLineType) => {
+export const SudokuXLine = ({ color, thickness, diagonal }: SudokuXLineType) => {
     color = color ?? "gray"
 
     const rows = 9
@@ -64,4 +64,10 @@ const SudokuXLine = ({ color, thickness, diagonal }: SudokuXLineType) => {
     )
 }
 
-export default SudokuXLine
+export const SudokuXs = ({ sudokuXs }: { sudokuXs: SudokuXLineType[] }) => (
+    <div className="SudokuXs">
+        {sudokuXs.map((sudokuX, i) =>
+            <SudokuXLine key={`SudokuX-${i}`} {...sudokuX} />
+        )}
+    </div>
+)

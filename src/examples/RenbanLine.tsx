@@ -1,4 +1,4 @@
-import { DecorationType } from "../types/decorations"
+import { Decorations } from "../types/decorations"
 import { RenbanLine } from "../types/decorations/line"
 import Sudoku from "./Sudoku"
 
@@ -10,7 +10,7 @@ type Props = {
     values?: (number | null)[][]
 
     renbanLines: RenbanLine[]
-    decorations?: DecorationType[]
+    decorations?: Decorations
 }
 
 const RenbanSudoku = ({ type, rows, columns, values, renbanLines, decorations }: Props) => {
@@ -20,7 +20,10 @@ const RenbanSudoku = ({ type, rows, columns, values, renbanLines, decorations }:
             rows={rows}
             columns={columns}
             values={values}
-            decorations={(renbanLines as DecorationType[]).concat(decorations ?? [])}
+            decorations={{
+                renbanLines: renbanLines,
+                ...(decorations ?? {})
+            }}
         />
     )
 }

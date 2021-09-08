@@ -36,4 +36,11 @@ export interface KillerCagePro extends Omit<KillerCage, "type"> {
   operation: "+" | "-" | "x" | "÷";
 }
 
-export type RegionType = SudokuRegion | HyperRegion | CalcRegion | RelativeDigitRegion | KillerCage | KillerCagePro
+export type RegionDecorations = {
+  sudokuRegions?: SudokuRegion[],
+  hyperRegions?: HyperRegion[],
+  calcRegions?: CalcRegion[],
+  relativeDigitRegions?: RelativeDigitRegion[],
+  killerCages?: KillerCage[],
+  killerCagesPro?: KillerCagePro[]
+}

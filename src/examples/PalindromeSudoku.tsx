@@ -1,4 +1,4 @@
-import { DecorationType } from "../types/decorations"
+import { Decorations } from "../types/decorations"
 import { PalindromeLine } from "../types/decorations/line"
 import Sudoku from "./Sudoku"
 
@@ -10,7 +10,7 @@ type Props = {
     values?: (number | null)[][]
 
     palindromeLines: PalindromeLine[]
-    decorations?: DecorationType[]
+    decorations?: Decorations
 }
 
 const PalindromeSudoku = ({ type, rows, columns, values, palindromeLines, decorations }: Props) => {
@@ -20,7 +20,10 @@ const PalindromeSudoku = ({ type, rows, columns, values, palindromeLines, decora
             rows={rows}
             columns={columns}
             values={values}
-            decorations={(palindromeLines as DecorationType[]).concat(decorations ?? [])}
+            decorations={{
+                palindromes: palindromeLines,
+                ...(decorations ?? {})
+            }}
         />
     )
 }

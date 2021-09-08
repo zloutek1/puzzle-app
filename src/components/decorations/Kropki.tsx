@@ -22,7 +22,7 @@ const StyledKropki = styled.div<StyledProps>`
     background-color: ${({ color }) => color};
 `
 
-const Kropki = ({ between, dimensions, color }: KropkiType) => {
+export const Kropki = ({ between, dimensions, color }: KropkiType) => {
     const [[x0, y0], [x1, y1]] = between
     const x = x0 + (x1 - x0) / 2
     const y = y0 + (y1 - y0) / 2
@@ -30,4 +30,10 @@ const Kropki = ({ between, dimensions, color }: KropkiType) => {
     return <StyledKropki x={x} y={y} dimensions={dimensions} color={color} cellSize={50} />
 }
 
-export default Kropki
+export const Kropkis = ({ kropkis }: { kropkis: KropkiType[] }) => (
+    <div className="Kropkis">
+        {kropkis.map((kropki, i) =>
+            <Kropki key={`Kropki-${i}`} {...kropki} />
+        )}
+    </div>
+)

@@ -19,4 +19,8 @@ export interface RenbanLine extends Line {
     type: "Renban"
 }
 
-export type LineType = SudokuXLine | PalindromeLine | RenbanLine
+export type LineDecorations = {
+    sudokuXs?: SudokuXLine[],
+    palindromes?: PalindromeLine[],
+    renbanLines?: RenbanLine[],
+}

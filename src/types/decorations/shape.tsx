@@ -1,10 +1,8 @@
 import { Decoration } from ".";
-import { Color, Dimensions, Point } from "../general";
+import { Dimensions, Point } from "../general";
 
 export interface Shape extends Decoration {
-    shapeType: string
     coords: Point
-    color: Color
     dimensions: Dimensions
 }
 
@@ -18,4 +16,7 @@ export interface Fortress extends Shape {
     inequality: "<" | ">"
 }
 
-export type ShapeType = EvenOdd | Fortress
+export type ShapeDecorations = {
+    evenOdds?: EvenOdd[],
+    fortresses?: Fortress[]
+}

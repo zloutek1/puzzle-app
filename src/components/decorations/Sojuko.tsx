@@ -34,7 +34,7 @@ const StyledXV = styled.div<StyledProps>`
     }
 `
 
-const Sojuko = ({ between, dimensions, target }: SojukoType) => {
+export const Sojuko = ({ between, dimensions, target }: SojukoType) => {
     const [[x0, y0], [x1, y1], [x2, y2]] = between
     const x = x0 + (x1 - x0) / 2 + (x2 - x0) / 2
     const y = y0 + (y1 - y0) / 2 + (y2 - y0) / 2
@@ -42,4 +42,10 @@ const Sojuko = ({ between, dimensions, target }: SojukoType) => {
     return <StyledXV x={x} y={y} dimensions={dimensions} target={target} cellSize={50} />
 }
 
-export default Sojuko
+export const Sojukos = ({ sojukos }: { sojukos: SojukoType[] }) => (
+    <div className="Sojukos">
+        {sojukos.map((sojuko, i) =>
+            <Sojuko key={`Sojuko-${i}`} {...sojuko} />
+        )}
+    </div>
+)

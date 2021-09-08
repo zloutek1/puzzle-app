@@ -1,4 +1,4 @@
-import { DecorationType } from "../types/decorations"
+import { Decorations } from "../types/decorations"
 import { XV } from "../types/decorations/between"
 import Sudoku from "./Sudoku"
 
@@ -10,7 +10,7 @@ type Props = {
     values?: (number | null)[][]
 
     xvs: XV[]
-    decorations?: DecorationType[]
+    decorations?: Decorations
 }
 
 const XVSudoku = ({ type, rows, columns, values, xvs, decorations }: Props) => {
@@ -20,7 +20,10 @@ const XVSudoku = ({ type, rows, columns, values, xvs, decorations }: Props) => {
             rows={rows}
             columns={columns}
             values={values}
-            decorations={(xvs as DecorationType[]).concat(decorations ?? [])}
+            decorations={{
+                xvs: xvs,
+                ...(decorations ?? {})
+            }}
         />
     )
 }

@@ -39,7 +39,7 @@ const StyledBorder = styled.div<StyledProps>`
             right           ? `${thickness}px 0 0 0 ${color ?? "#000000"}`              : `0 0 0 0 ${color ?? "#000000"}`};
 `
 
-const SudokuRegion = ({ cells }: SudokuRegionType) => {
+export const SudokuRegion = ({ cells }: SudokuRegionType) => {
     const calculateBorder = (x: number, y: number) => {
         const isUp = cells.find(cell => equals(cell, [x, y - 1]))
         const isDown = cells.find(cell => equals(cell, [x, y + 1]))
@@ -63,4 +63,10 @@ const SudokuRegion = ({ cells }: SudokuRegionType) => {
     )
 }
 
-export default SudokuRegion
+export const SudokuRegions = ({ sudokuRegions }: { sudokuRegions: SudokuRegionType[] }) => (
+    <div className="SudokuRegions">
+        {sudokuRegions.map((region, i) =>
+            <SudokuRegion key={`Region-${i}`} {...region} />
+        )}
+    </div>
+)

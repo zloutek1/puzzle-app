@@ -1,5 +1,5 @@
 import Game from "../components/Game"
-import { DecorationType } from "../types/decorations"
+import { Decorations } from "../types/decorations"
 import { Sojuko as SojukoType } from "../types/decorations/between"
 import { Puzzle } from "../types/puzzle"
 import { genCellsFromGiven, genEmptyCells } from "../utils"
@@ -12,7 +12,7 @@ type Props = {
     values?: (number | null)[][]
 
     sojukos: SojukoType[]
-    decorations?: DecorationType[]
+    decorations?: Decorations
 }
 
 const Sojuko = ({ type, rows, columns, values, sojukos, decorations }: Props) => {
@@ -24,10 +24,10 @@ const Sojuko = ({ type, rows, columns, values, sojukos, decorations }: Props) =>
     const puzzle: Puzzle<number> = {
         type: type ?? "Sojuko",
         cells: values === undefined ? genEmptyCells(rows, columns) : genCellsFromGiven(rows, columns, values),
-        decorations: [
-            ...sojukos,
-            ...(decorations ?? [])
-        ],
+        decorations: {
+            sojukos: sojukos,
+            ...(decorations ?? {})
+        },
         rules: rules,
     }
 

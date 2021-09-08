@@ -25,4 +25,16 @@ export interface Sandwich extends SideDecoration {
     value: number
 }
 
-export type SideType = Skyscraper | XSum | Nonogram | Sandwich
+export interface LittleKiller extends SideDecoration {
+    type: "LittleKiller"
+    value: number
+    facing: "left" | "right"
+}
+
+export type SideDecorations = {
+    skyscrapers?: Skyscraper[],
+    xsums?: XSum[],
+    nonograms?: Nonogram[],
+    sandwiches?: Sandwich[],
+    littleKillers?: LittleKiller[]
+}

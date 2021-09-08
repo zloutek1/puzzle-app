@@ -1,4 +1,4 @@
-import { Decoration, DecorationType } from "./decorations";
+import { Decorations } from "./decorations";
 
 export interface Cell<ValueType> {
     x: number
@@ -12,7 +12,7 @@ export interface Cell<ValueType> {
 export interface Puzzle<CellValueType> {
     type: string,
     cells: Cell<CellValueType>[][],
-    decorations: DecorationType[]
+    decorations: Decorations
     rules: () => boolean
 }
 

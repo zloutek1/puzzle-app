@@ -1,12 +1,12 @@
 import styled from "styled-components"
-import { DecorationType } from "../types/decorations"
+import { Decorations as DecorationsType } from "../types/decorations"
 import { Cell as CellType } from "../types/puzzle"
 import Decorations from "./Decorations"
 import Values from "./Values"
 
 type Props<T> = {
     cells: CellType<T>[][]
-    decorations: DecorationType[]
+    decorations: DecorationsType
 }
 
 const StyledBoard = styled.div`

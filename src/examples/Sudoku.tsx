@@ -1,4 +1,4 @@
-import { DecorationType } from "../types/decorations"
+import { Decorations } from "../types/decorations"
 import { SudokuRegion } from "../types/decorations/region"
 import JigsawSudoku from "./JigsawSudoku"
 
@@ -9,7 +9,7 @@ type Props = {
     columns?: number
     values?: (number | null)[][]
 
-    decorations?: DecorationType[]
+    decorations?: Decorations
 }
 
 const Sudoku = ({ type, rows, columns, values, decorations }: Props) => {

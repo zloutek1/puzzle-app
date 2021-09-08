@@ -31,4 +31,9 @@ export interface Sojuko extends Bettween4 {
     target: number
 }
 
-export type BetweenType = XV | Kropki | Futoshiki | Sojuko
+export type BetweenDecorations = {
+    xvs?: XV[],
+    kropkis?: Kropki[],
+    futoshikis?: Futoshiki[],
+    sojukos?: Sojuko[]
+}
