@@ -23,12 +23,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] Killer sudoku PRO
 
 - [ ] EvenOddSudoku
-- [ ] Fortress
+- [X] Fortress
 
 - [ ] Skyscraper
 - [ ] XSum
 - [ ] Nonogram
 - [ ] Sandwich
+- [ ] Little killer sudoku
 
 - [ ] Consecutive Sudoku
 - [ ] Hitori

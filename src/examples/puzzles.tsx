@@ -1,3 +1,4 @@
+import FortressSudoku from "./FortressSudoku";
 import Kropki from "./Kropki";
 import PalindromeSudoku from "./PalindromeSudoku";
 import RenbanSudoku from "./RenbanLine";
@@ -153,5 +154,34 @@ export const puzzles = [
 
     palindromeLines={[
         {type: "Palindrome", cells: [[5,8],[6,8],[7,7],[8,6],[8,5],[8,4],[8,3],[8,2],[7,1],[6,0],[5,0],[4,0],[3,0],[2,1],[1,2],[0,3],[0,4],[0,5],[1,6],[2,7],[3,7],[4,6],[5,5],[5,4],[4,3],[3,4]], thickness: 4}
+    ]} />,
+
+    <FortressSudoku values={[
+        [null, null, null,     2,    1,    3,     6, null, null],
+        [null, null, null,     5, null, null,     8,    2,    4],
+        [null, null,    2,     4, null, null,  null, null, null],
+
+        [null, null,    5,  null, null, null,  null, null, null],
+        [null, null,    8,     7,    3,    2,     1, null, null],
+        [null, null, null,  null, null, null,     7, null, null],
+
+        [null, null, null,  null, null,    7,     4, null, null],
+        [   4,    1,    7,  null, null,    6,  null, null, null],
+        [null, null,    6,     3,    4,    5,  null, null, null]
+    ]}
+
+    fortresses={[
+        {type: "Fortress", coords: [1, 0], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [8, 0], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [1, 1], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [8, 3], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [2, 5], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [1, 6], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [4, 6], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [8, 6], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [3, 7], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [6, 7], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [1, 8], inequality: "<", dimensions: {width: 50, height: 50}},
+        {type: "Fortress", coords: [8, 8], inequality: "<", dimensions: {width: 50, height: 50}},
     ]} />
 ]
