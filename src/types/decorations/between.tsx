@@ -27,8 +27,8 @@ export interface Futoshiki extends Bettween2 {
 }
 
 export interface Sojuko extends Bettween4 {
-    type: "Sujuko"
-    sum: number
+    type: "Sojuko"
+    target: number
 }
 
 export type BetweenType = XV | Kropki | Futoshiki | Sojuko

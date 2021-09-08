@@ -1,9 +1,10 @@
 import Kropki from "./Kropki";
+import Sojuko from "./Sojuko";
 import Sudoku from "./Sudoku";
 import XV from "./XV";
 
 export const puzzles = [
-    <Sudoku rows={9} columns={9} values={[
+    <Sudoku values={[
         [   5,    3, null,  null,    7, null,  null, null, null],
         [   6, null, null,     1,    9,    5,  null, null, null],
         [null,    9,    8,  null, null, null,  null,    6, null],
@@ -94,5 +95,12 @@ export const puzzles = [
         {type: "XV", between: [[7,7], [8,7]], dimensions: {width: 15, height: 15}, text: "X"},
 
         {type: "XV", between: [[7,8], [8,8]], dimensions: {width: 15, height: 15}, text: "X"},
+    ]} />,
+
+    <Sojuko rows={3} columns={3} sojukos={[
+        {type: "Sojuko", between: [[0,0], [1,0], [0,1], [1,1]], dimensions: {width: 30, height: 30}, target: 30},
+        {type: "Sojuko", between: [[1,0], [2,0], [1,1], [2,1]], dimensions: {width: 30, height: 30}, target: 22},
+        {type: "Sojuko", between: [[0,1], [1,1], [0,2], [1,2]], dimensions: {width: 30, height: 30}, target: 20},
+        {type: "Sojuko", between: [[1,1], [2,1], [1,2], [2,2]], dimensions: {width: 30, height: 30}, target: 17},
     ]} />
 ]

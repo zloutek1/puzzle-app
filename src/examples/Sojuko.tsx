@@ -1,6 +1,6 @@
 import Game from "../components/Game"
 import { DecorationType } from "../types/decorations"
-import { SudokuRegion } from "../types/decorations/region"
+import { Sojuko as SojukoType } from "../types/decorations/between"
 import { Puzzle } from "../types/puzzle"
 import { genCellsFromGiven, genEmptyCells } from "../utils"
 
@@ -11,21 +11,21 @@ type Props = {
     columns?: number
     values?: (number | null)[][]
 
-    regions: SudokuRegion[]
+    sojukos: SojukoType[]
     decorations?: DecorationType[]
 }
 
-const JigsawSudoku = ({ type, rows, columns, regions, values, decorations }: Props) => {
+const Sojuko = ({ type, rows, columns, values, sojukos, decorations }: Props) => {
     const rules = () => false
 
-    rows = rows ?? 9
-    columns = columns ?? 9
+    rows = rows ?? 3
+    columns = columns ?? 3
 
     const puzzle: Puzzle<number> = {
-        type: type ?? "JigsawSudoku",
+        type: type ?? "Sojuko",
         cells: values === undefined ? genEmptyCells(rows, columns) : genCellsFromGiven(rows, columns, values),
         decorations: [
-            ...regions,
+            ...sojukos,
             ...(decorations ?? [])
         ],
         rules: rules,
@@ -34,4 +34,4 @@ const JigsawSudoku = ({ type, rows, columns, regions, values, decorations }: Pro
     return <Game puzzle={puzzle} />
 }
 
-export default JigsawSudoku
+export default Sojuko

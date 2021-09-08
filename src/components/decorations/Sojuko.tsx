@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { XV as XVType } from "../../types/decorations/between"
+import { Sojuko as SojukoType } from "../../types/decorations/between"
 import { Dimensions } from "../../types/general"
 
 type StyledProps = {
@@ -7,7 +7,7 @@ type StyledProps = {
     y: number
     dimensions: Dimensions
     cellSize: number
-    text: string
+    target: number
 }
 
 const StyledXV = styled.div<StyledProps>`
@@ -19,9 +19,10 @@ const StyledXV = styled.div<StyledProps>`
 
     border-radius: 100%;
     background-color: white;
+    border: solid 1px black;
 
     &:after {
-        content: "${({text}) => text}";
+        content: "${({target}) => target}";
 
         position: absolute;
         width: 100%;
@@ -33,12 +34,12 @@ const StyledXV = styled.div<StyledProps>`
     }
 `
 
-const XV = ({ between, dimensions, text }: XVType) => {
-    const [[x0, y0], [x1, y1]] = between
-    const x = x0 + (x1 - x0) / 2
-    const y = y0 + (y1 - y0) / 2
+const Sojuko = ({ between, dimensions, target }: SojukoType) => {
+    const [[x0, y0], [x1, y1], [x2, y2]] = between
+    const x = x0 + (x1 - x0) / 2 + (x2 - x0) / 2
+    const y = y0 + (y1 - y0) / 2 + (y2 - y0) / 2
 
-    return <StyledXV x={x} y={y} dimensions={dimensions} text={text} cellSize={50} />
+    return <StyledXV x={x} y={y} dimensions={dimensions} target={target} cellSize={50} />
 }
 
-export default XV
+export default Sojuko

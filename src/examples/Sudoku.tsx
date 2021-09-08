@@ -4,13 +4,18 @@ import JigsawSudoku from "./JigsawSudoku"
 
 type Props = {
     type?: string
+
     rows?: number
     columns?: number
     values?: (number | null)[][]
+
     decorations?: DecorationType[]
 }
 
 const Sudoku = ({ type, rows, columns, values, decorations }: Props) => {
+    rows = rows ?? 9
+    columns = columns ?? 9
+
     const regions = [
         {type: "SudokuRegion", cells: [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]], unique: true},
         {type: "SudokuRegion", cells: [[0, 3], [0, 4], [0, 5], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5]], unique: true},
@@ -26,8 +31,8 @@ const Sudoku = ({ type, rows, columns, values, decorations }: Props) => {
     return (
         <JigsawSudoku
             type={type ?? "Sudoku"}
-            rows={rows ?? 9}
-            columns={columns ?? 9}
+            rows={rows}
+            columns={columns}
             regions={regions}
             values={values}
             decorations={decorations}

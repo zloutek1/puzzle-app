@@ -4,11 +4,13 @@ import Sudoku from "./Sudoku"
 
 type Props = {
     type?: string
+
     rows?: number
     columns?: number
     values?: (number | null)[][]
-    decorations?: DecorationType[]
+
     xvs: XVType[]
+    decorations?: DecorationType[]
 }
 
 const XV = ({ type, rows, columns, values, xvs, decorations }: Props) => {
