@@ -1,6 +1,7 @@
 import EvenOddSudoku from "./EvenOddSudoku";
 import FortressSudoku from "./FortressSudoku";
 import Kropki from "./Kropki";
+import LittleKillerSudkou from "./LittleKillerSudoku";
 import Nonogram from "./Nonogram";
 import PalindromeSudoku from "./PalindromeSudoku";
 import RenbanSudoku from "./RenbanLine";
@@ -316,7 +317,43 @@ export const puzzles = [
         {type: "Nonogram", values: [2,1,2,1,2,1,2], position: 12, orientation: "left"},
         {type: "Nonogram", values: [2,4,1,4,2], position: 13, orientation: "left"},
         {type: "Nonogram", values: [1,2,1,2,1], position: 14, orientation: "left"},
-    ]} />
+    ]} />,
 
+    <LittleKillerSudkou values={[
+        [   7, null, null,     1,    9, null,     8, null,    2],
+        [null,    9, null,     8, null, null,  null,    3, null],
+        [null, null,    8,  null, null, null,     1, null,    9],
+
+        [   1,    8, null,     9, null, null,  null, null, null],
+        [   9, null, null,  null,    7, null,  null, null, null],
+        [null, null, null,  null, null,    8,  null, null, null],
+
+        [null, null, null,  null, null, null,  null, null, null],
+        [   8, null, null,  null, null, null,  null, null, null],
+        [null,    7, null,  null, null, null,  null, null, null]
+    ]}
+
+
+    littleKillers={[
+        {type: "LittleKiller", value: 7, position: 1, orientation: "up"},
+        {type: "LittleKiller", value: 20, position: 2, orientation: "up"},
+        {type: "LittleKiller", value: 5, position: 3, orientation: "up"},
+        {type: "LittleKiller", value: 42, position: 4, orientation: "up"},
+
+        {type: "LittleKiller", value: 10, position: 1, orientation: "right"},
+        {type: "LittleKiller", value: 20, position: 2, orientation: "right"},
+        {type: "LittleKiller", value: 23, position: 3, orientation: "right"},
+
+        {type: "LittleKiller", value: 4, position: 1, orientation: "down"},
+        {type: "LittleKiller", value: 16, position: 2, orientation: "down"},
+        {type: "LittleKiller", value: 19, position: 3, orientation: "down"},
+        {type: "LittleKiller", value: 34, position: 4, orientation: "down"},
+        {type: "LittleKiller", value: 24, position: 8, orientation: "down"},
+
+        {type: "LittleKiller", value: 15, position: 1, orientation: "left"},
+        {type: "LittleKiller", value: 15, position: 2, orientation: "left"},
+        {type: "LittleKiller", value: 16, position: 3, orientation: "left"},
+        {type: "LittleKiller", value: 72, position: 8, orientation: "left"},
+    ]} />
 
 ]

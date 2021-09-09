@@ -17,7 +17,7 @@ const StyledBoard = styled.div`
 const Board = <T,>({ cells, decorations }: Props<T>) => {
     const columns = cells[0].length
     const rows = cells.length
-    const cellSize = 40
+    const cellSize = 50
 
     const context: BoardContext = {
         boardRows: rows,

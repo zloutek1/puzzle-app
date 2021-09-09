@@ -29,7 +29,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] XSum
 - [X] Nonogram
 - [ ] Sandwich
-- [ ] Little killer sudoku
+- [X] Little killer sudoku
 
 - [ ] Consecutive Sudoku
 - [ ] Hitori

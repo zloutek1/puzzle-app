@@ -29,7 +29,6 @@ export interface Sandwich extends SideDecoration {
 export interface LittleKiller extends SideDecoration {
     type: "LittleKiller"
     value: number
-    facing: "left" | "right"
 }
 
 export type SideDecorations = {

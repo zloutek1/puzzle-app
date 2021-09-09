@@ -27,7 +27,7 @@ type Props = {
 }
 
 export const Skyscraper = ({ value, position, orientation, context }: SkyscraperType & Props) => {
-    const { boardRows, boardColumns, cellSize } = context;
+    const { boardRows, boardColumns } = context;
 
     const getCoords = (orientation: "up" | "down"| "left" | "right") => {
         switch (orientation) {

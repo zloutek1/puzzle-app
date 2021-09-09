@@ -5,6 +5,7 @@ import { EvenOdds } from "./decorations/EvenOdd"
 import { Fortresses } from "./decorations/Fortresses"
 import { Kropkis } from "./decorations/Kropki"
 import { Palindromes, RenbanLines } from "./decorations/Line"
+import { LittleKillers } from "./decorations/LittleKiller"
 import { Nonograms } from "./decorations/Nonogram"
 import { Skyscrapers } from "./decorations/Skyscraper"
 import { Sojukos } from "./decorations/Sojuko"
@@ -37,7 +38,8 @@ const Decorations = ({
         fortresses,
         evenOdds,
         skyscrapers,
-        nonograms
+        nonograms,
+        littleKillers
     },
     context
 }: Props) => {
@@ -54,6 +56,7 @@ const Decorations = ({
             {evenOdds &&      <EvenOdds evenOdds={evenOdds} context={context} />}
             {skyscrapers &&   <Skyscrapers skyscrapers={skyscrapers} context={context} />}
             {nonograms &&     <Nonograms nonograms={nonograms} context={context} />}
+            {littleKillers && <LittleKillers littleKillers={littleKillers} context={context} />}
         </StyledDecorations>
     )
 }
