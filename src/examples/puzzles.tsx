@@ -1,5 +1,6 @@
 import EvenOddSudoku from "./EvenOddSudoku";
 import FortressSudoku from "./FortressSudoku";
+import KillerSudoku from "./KillerSudoku";
 import Kropki from "./Kropki";
 import LittleKillerSudkou from "./LittleKillerSudoku";
 import Nonogram from "./Nonogram";
@@ -354,6 +355,37 @@ export const puzzles = [
         {type: "LittleKiller", value: 15, position: 2, orientation: "left"},
         {type: "LittleKiller", value: 16, position: 3, orientation: "left"},
         {type: "LittleKiller", value: 72, position: 8, orientation: "left"},
+    ]} />,
+
+    <KillerSudoku killerCages={[
+        {type: "KillerCage", target: 8, cells: [[0,0],[0,1]], unique: true},
+        {type: "KillerCage", target: 24, cells: [[1,0],[1,1],[2,1],[2,2]], unique: true},
+        {type: "KillerCage", target: 22, cells: [[2,0],[3,0],[4,0],[4,1]], unique: true},
+        {type: "KillerCage", target: 13, cells: [[5,0],[6,0]], unique: true},
+        {type: "KillerCage", target: 9, cells: [[7,0],[8,0],[8,1]], unique: true},
+        {type: "KillerCage", target: 11, cells: [[3,1],[3,2],[4,2]], unique: true},
+        {type: "KillerCage", target: 22, cells: [[5,1],[5,2],[6,2]], unique: true},
+        {type: "KillerCage", target: 9, cells: [[6,1],[7,1]], unique: true},
+        {type: "KillerCage", target: 4, cells: [[0,2],[1,2]], unique: true},
+        {type: "KillerCage", target: 18, cells: [[7,2],[8,2],[8,3]], unique: true},
+        {type: "KillerCage", target: 29, cells: [[0,3],[0,4],[0,5],[1,4]], unique: true},
+        {type: "KillerCage", target: 16, cells: [[1,3],[2,3],[2,4],[2,5],[1,5]], unique: true},
+        {type: "KillerCage", target: 15, cells: [[3,3],[4,3]], unique: true},
+        {type: "KillerCage", target: 13, cells: [[5,3],[6,3],[7,3]], unique: true},
+        {type: "KillerCage", target: 16, cells: [[3,4],[4,4],[5,4],[6,4]], unique: true},
+        {type: "KillerCage", target: 14, cells: [[7,4],[8,4]], unique: true},
+        {type: "KillerCage", target: 14, cells: [[3,5],[4,5]], unique: true},
+        {type: "KillerCage", target: 6, cells: [[5,5],[6,5],[7,5]], unique: true},
+        {type: "KillerCage", target: 24, cells: [[8,5],[8,6],[7,6]], unique: true},
+        {type: "KillerCage", target: 7, cells: [[0,6],[1,6]], unique: true},
+        {type: "KillerCage", target: 17, cells: [[2,6],[3,6],[4,6],[3,7]], unique: true},
+        {type: "KillerCage", target: 7, cells: [[5,6],[6,6],[5,7]], unique: true},
+        {type: "KillerCage", target: 7, cells: [[0,7],[0,8]], unique: true},
+        {type: "KillerCage", target: 24, cells: [[1,7],[1,8],[2,7]], unique: true},
+        {type: "KillerCage", target: 21, cells: [[4,7],[4,8],[3,8],[2,8]], unique: true},
+        {type: "KillerCage", target: 11, cells: [[6,7],[7,7]], unique: true},
+        {type: "KillerCage", target: 11, cells: [[8,7],[8,8],[7,8]], unique: true},
+        {type: "KillerCage", target: 13, cells: [[5,8],[6,8]], unique: true},
     ]} />
 
 ]

@@ -19,7 +19,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] Hyper Sudoku
 - [ ] Calcdoku / KenKen
 - [ ] RelativeDigitRegions
-- [ ] Killer sudoku
+- [X] Killer sudoku
 - [ ] Killer sudoku PRO
 
 - [X] EvenOddSudoku

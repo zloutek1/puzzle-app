@@ -3,6 +3,7 @@ import { Decorations as DecorationsType } from "../types/decorations"
 import { BoardContext } from "../types/general"
 import { EvenOdds } from "./decorations/EvenOdd"
 import { Fortresses } from "./decorations/Fortresses"
+import { KillerCages } from "./decorations/KillerCage"
 import { Kropkis } from "./decorations/Kropki"
 import { Palindromes, RenbanLines } from "./decorations/Line"
 import { LittleKillers } from "./decorations/LittleKiller"
@@ -39,7 +40,8 @@ const Decorations = ({
         evenOdds,
         skyscrapers,
         nonograms,
-        littleKillers
+        littleKillers,
+        killerCages
     },
     context
 }: Props) => {
@@ -57,6 +59,7 @@ const Decorations = ({
             {skyscrapers &&   <Skyscrapers skyscrapers={skyscrapers} context={context} />}
             {nonograms &&     <Nonograms nonograms={nonograms} context={context} />}
             {littleKillers && <LittleKillers littleKillers={littleKillers} context={context} />}
+            {killerCages &&   <KillerCages killerCages={killerCages} context={context} />}
         </StyledDecorations>
     )
 }
