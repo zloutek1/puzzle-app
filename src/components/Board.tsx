@@ -1,20 +1,22 @@
 import styled from "styled-components"
-import { Decorations as DecorationsType } from "../types/decorations"
+import { selectPuzzle } from "../state/gameSlice"
+import { useAppSelector } from "../state/hooks"
 import { BoardContext } from "../types/general"
-import { Cell as CellType } from "../types/puzzle"
 import Decorations from "./Decorations"
 import Values from "./Values"
-
-type Props<T> = {
-    cells: CellType<T>[][]
-    decorations: DecorationsType
-}
 
 const StyledBoard = styled.div`
     position: relative;
 `
 
-const Board = <T,>({ cells, decorations }: Props<T>) => {
+const Board = () => {
+    const puzzle = useAppSelector(selectPuzzle);
+
+    if (puzzle === undefined)
+        return <div>Puzzle not loaded</div>
+
+    const { cells, decorations } = puzzle;
+
     const columns = cells[0].length
     const rows = cells.length
     const cellSize = 50

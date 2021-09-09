@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
+import { loadPuzzle } from "../state/gameSlice"
 import { Puzzle } from "../types/puzzle"
 import Board from "./Board"
 
@@ -13,9 +15,12 @@ const StyledGame = styled.div`
 `
 
 const Game = <T,>({ puzzle }: Props<T>) => {
+    const dispatch = useDispatch()
+    dispatch(loadPuzzle(puzzle))
+
     return (
         <StyledGame className="Game">
-            <Board cells={puzzle.cells} decorations={puzzle.decorations} />
+            <Board />
         </StyledGame>
     )
 }

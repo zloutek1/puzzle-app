@@ -1,7 +1,7 @@
 import { puzzles } from "./examples/puzzles";
 
 function App() {
-  return puzzles[13]
+  return puzzles[0]
 }
 
 export default App;
