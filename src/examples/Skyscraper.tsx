@@ -30,6 +30,7 @@ const Skyscraper = ({ type, rows, columns, skyscrapers, values, decorations, rul
             skyscrapers: skyscrapers,
             ...(decorations ?? {})
         },
+        valueOptions: [1, 2, 3, 4, 5],
         rules: () => skyscraperRules() && (!rules || rules()),
     }
 

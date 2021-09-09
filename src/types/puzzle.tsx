@@ -11,9 +11,10 @@ export interface Cell<ValueType> {
 
 export interface Puzzle<CellValueType> {
     type: string,
-    cells: Cell<CellValueType>[][],
+    cells: Cell<CellValueType>[][]
     decorations: Decorations
     rules: () => boolean
+    valueOptions: CellValueType[]
 }
 
 export interface Game<CellValueType> {

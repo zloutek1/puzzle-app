@@ -24,6 +24,7 @@ const Kropki = ({ rows, columns, kropkiDots, decorations, rules }: Props) => {
             kropkis: kropkiDots,
             ...(decorations ?? {})
         },
+        valueOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         rules: () => kropkiRules() && (!rules || rules()),
     }
 

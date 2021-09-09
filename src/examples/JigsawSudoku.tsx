@@ -30,6 +30,7 @@ const JigsawSudoku = ({ type, rows, columns, regions, values, decorations, rules
             sudokuRegions: regions,
             ...(decorations ?? {})
         },
+        valueOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         rules: () => sudokuRules() && (!rules || rules()),
     }
 

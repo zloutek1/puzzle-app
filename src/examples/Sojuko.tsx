@@ -30,6 +30,7 @@ const Sojuko = ({ type, rows, columns, values, sojukos, decorations, rules }: Pr
             sojukos: sojukos,
             ...(decorations ?? {})
         },
+        valueOptions: [1, 2, 3],
         rules: () => sojukoRules() && (!rules || rules()),
     }
 
