@@ -13,10 +13,10 @@ export interface Puzzle<CellValueType> {
     type: string,
     cells: Cell<CellValueType>[][]
     decorations: Decorations
-    rules: () => boolean
+    rules: string[]
     valueOptions: CellValueType[]
 }
 
 export interface Game<CellValueType> {
-    puzzle: Puzzle<CellValueType>
+    puzzle?: Puzzle<CellValueType>
 }

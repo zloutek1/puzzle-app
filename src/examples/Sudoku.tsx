@@ -11,7 +11,7 @@ type Props = {
 
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const Sudoku = ({ type, rows, columns, values, decorations, rules }: Props) => {

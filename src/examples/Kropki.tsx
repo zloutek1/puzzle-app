@@ -11,12 +11,10 @@ type Props = {
     kropkiDots: KropkiType[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const Kropki = ({ rows, columns, kropkiDots, decorations, rules }: Props) => {
-    const kropkiRules = () => false
-
     const puzzle: Puzzle<number> = {
         type: "Kropki",
         cells: genEmptyCells(rows, columns),
@@ -25,7 +23,7 @@ const Kropki = ({ rows, columns, kropkiDots, decorations, rules }: Props) => {
             ...(decorations ?? {})
         },
         valueOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        rules: () => kropkiRules() && (!rules || rules()),
+        rules: [...rules ?? [], "Kropki"],
     }
 
     return <Game puzzle={puzzle} />

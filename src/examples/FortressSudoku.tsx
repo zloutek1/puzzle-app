@@ -12,12 +12,10 @@ type Props = {
     fortresses: Fortress[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const FortressSudoku = ({ type, rows, columns, values, fortresses, decorations, rules }: Props) => {
-    const fortressRules = () => false
-
     return (
         <Sudoku
             type={type ?? "Fortress Sudoku"}
@@ -28,7 +26,7 @@ const FortressSudoku = ({ type, rows, columns, values, fortresses, decorations, 
                 fortresses: fortresses,
                 ...decorations
             }}
-            rules={() => fortressRules() && (!rules || rules())}
+            rules={[...rules ?? [], "fortress"]}
         />
     )
 }

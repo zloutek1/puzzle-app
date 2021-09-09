@@ -12,12 +12,10 @@ type Props = {
     renbanLines: RenbanLine[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const RenbanSudoku = ({ type, rows, columns, values, renbanLines, decorations, rules }: Props) => {
-    const renbanRules = () => false
-
     return (
         <Sudoku
             type={type ?? "Renban Sudoku"}
@@ -28,7 +26,7 @@ const RenbanSudoku = ({ type, rows, columns, values, renbanLines, decorations, r
                 renbanLines: renbanLines,
                 ...(decorations ?? {})
             }}
-            rules={() => renbanRules() && (!rules || rules())}
+            rules={[...rules ?? [], "renban"]}
         />
     )
 }

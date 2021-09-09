@@ -14,12 +14,10 @@ type Props = {
     skyscrapers: SkyscraperType[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const Skyscraper = ({ type, rows, columns, skyscrapers, values, decorations, rules }: Props) => {
-    const skyscraperRules = () => false
-
     rows = rows ?? 5
     columns = columns ?? 5
 
@@ -31,7 +29,7 @@ const Skyscraper = ({ type, rows, columns, skyscrapers, values, decorations, rul
             ...(decorations ?? {})
         },
         valueOptions: [1, 2, 3, 4, 5],
-        rules: () => skyscraperRules() && (!rules || rules()),
+        rules: [...rules ?? [], "skyscraper"],
     }
 
     return <Game puzzle={puzzle} />

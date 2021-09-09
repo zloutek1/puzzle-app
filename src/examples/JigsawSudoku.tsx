@@ -14,12 +14,10 @@ type Props = {
     regions: SudokuRegion[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const JigsawSudoku = ({ type, rows, columns, regions, values, decorations, rules }: Props) => {
-    const sudokuRules = () => false
-
     rows = rows ?? 9
     columns = columns ?? 9
 
@@ -31,7 +29,7 @@ const JigsawSudoku = ({ type, rows, columns, regions, values, decorations, rules
             ...(decorations ?? {})
         },
         valueOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        rules: () => sudokuRules() && (!rules || rules()),
+        rules: [...rules ?? [], "sudoku"],
     }
 
     return <Game puzzle={puzzle} />

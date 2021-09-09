@@ -12,12 +12,10 @@ type Props = {
     diagonals: SudokuXLine[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const SudokuX = ({ type, rows, columns, values, diagonals, decorations, rules }: Props) => {
-    const sudokuXRules = () => false
-
     return (
         <Sudoku
             type={type ?? "SudokuX"}
@@ -28,7 +26,7 @@ const SudokuX = ({ type, rows, columns, values, diagonals, decorations, rules }:
                 sudokuXs: diagonals,
                 ...(decorations ?? {})
             }}
-            rules={() => sudokuXRules() && (!rules || rules())}
+            rules={[...rules ?? [], "sudokuX"]}
         />
     )
 }

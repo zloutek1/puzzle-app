@@ -12,12 +12,10 @@ type Props = {
     evenOdds: EvenOdd[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const EvenOddSudoku = ({ type, rows, columns, values, evenOdds, decorations, rules }: Props) => {
-    const evenOddRules = () => false
-
     return (
         <Sudoku
             type={type ?? "Even/Odd Sudoku"}
@@ -28,7 +26,7 @@ const EvenOddSudoku = ({ type, rows, columns, values, evenOdds, decorations, rul
                 evenOdds: evenOdds,
                 ...decorations
             }}
-            rules={() => evenOddRules() && (!rules || rules())}
+            rules={[...rules ?? [], "evenOdd"]}
         />
     )
 }

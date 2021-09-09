@@ -14,12 +14,10 @@ type Props = {
     sojukos: SojukoType[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const Sojuko = ({ type, rows, columns, values, sojukos, decorations, rules }: Props) => {
-    const sojukoRules = () => false
-
     rows = rows ?? 3
     columns = columns ?? 3
 
@@ -31,7 +29,7 @@ const Sojuko = ({ type, rows, columns, values, sojukos, decorations, rules }: Pr
             ...(decorations ?? {})
         },
         valueOptions: [1, 2, 3],
-        rules: () => sojukoRules() && (!rules || rules()),
+        rules: [...rules ?? [], "sojuko"],
     }
 
     return <Game puzzle={puzzle} />

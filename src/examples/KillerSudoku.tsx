@@ -12,12 +12,10 @@ type Props = {
     killerCages: KillerCage[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const KillerSudoku = ({ type, rows, columns, values, killerCages, decorations, rules }: Props) => {
-    const killerRules = () => false
-
     return (
         <Sudoku
             type={type ?? "Killer Sudoku"}
@@ -28,7 +26,7 @@ const KillerSudoku = ({ type, rows, columns, values, killerCages, decorations, r
                 killerCages: killerCages,
                 ...decorations
             }}
-            rules={() => killerRules() && (!rules || rules())}
+            rules={[...rules ?? [], "killerSudoku"]}
         />
     )
 }

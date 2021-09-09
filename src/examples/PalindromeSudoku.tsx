@@ -12,12 +12,10 @@ type Props = {
     palindromeLines: PalindromeLine[]
     decorations?: Decorations
 
-    rules?: () => boolean
+    rules?: string[]
 }
 
 const PalindromeSudoku = ({ type, rows, columns, values, palindromeLines, decorations, rules }: Props) => {
-    const palindromeRules = () => false
-
     return (
         <Sudoku
             type={type ?? "Palindrome Sudoku"}
@@ -28,7 +26,7 @@ const PalindromeSudoku = ({ type, rows, columns, values, palindromeLines, decora
                 palindromes: palindromeLines,
                 ...(decorations ?? {})
             }}
-            rules={() => palindromeRules() && (!rules || rules())}
+            rules={[...rules ?? [], "palindrome"]}
         />
     )
 }
