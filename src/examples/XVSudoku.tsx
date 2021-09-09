@@ -11,9 +11,13 @@ type Props = {
 
     xvs: XV[]
     decorations?: Decorations
+
+    rules?: () => boolean
 }
 
-const XVSudoku = ({ type, rows, columns, values, xvs, decorations }: Props) => {
+const XVSudoku = ({ type, rows, columns, values, xvs, decorations, rules }: Props) => {
+    const XVRules = () => false
+
     return (
         <Sudoku
             type={type ?? "XV Sudoku"}
@@ -24,6 +28,7 @@ const XVSudoku = ({ type, rows, columns, values, xvs, decorations }: Props) => {
                 xvs: xvs,
                 ...(decorations ?? {})
             }}
+            rules={() => XVRules() && (!rules || rules())}
         />
     )
 }

@@ -13,10 +13,12 @@ type Props = {
 
     nonograms: NonogramType[]
     decorations?: Decorations
+
+    rules?: () => boolean
 }
 
-const Nonogram = ({ type, rows, columns, nonograms, values, decorations }: Props) => {
-    const rules = () => false
+const Nonogram = ({ type, rows, columns, nonograms, values, decorations, rules }: Props) => {
+    const nonogramRules = () => false
 
     rows = rows ?? 9
     columns = columns ?? 9
@@ -28,7 +30,7 @@ const Nonogram = ({ type, rows, columns, nonograms, values, decorations }: Props
             nonograms: nonograms,
             ...(decorations ?? {})
         },
-        rules: rules,
+        rules: () => nonogramRules() && (!rules || rules()),
     }
 
     return <Game puzzle={puzzle} />

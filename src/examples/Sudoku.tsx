@@ -10,9 +10,11 @@ type Props = {
     values?: (number | null)[][]
 
     decorations?: Decorations
+
+    rules?: () => boolean
 }
 
-const Sudoku = ({ type, rows, columns, values, decorations }: Props) => {
+const Sudoku = ({ type, rows, columns, values, decorations, rules }: Props) => {
     rows = rows ?? 9
     columns = columns ?? 9
 
@@ -36,6 +38,7 @@ const Sudoku = ({ type, rows, columns, values, decorations }: Props) => {
             regions={regions}
             values={values}
             decorations={decorations}
+            rules={rules}
         />
     )
 }

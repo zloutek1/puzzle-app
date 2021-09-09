@@ -11,10 +11,12 @@ type Props = {
 
     littleKillers: LittleKillerType[]
     decorations?: Decorations
+
+    rules?: () => boolean
 }
 
-const LittleKillerSudkou = ({ type, rows, columns, littleKillers, values, decorations }: Props) => {
-    const rules = () => false
+const LittleKillerSudkou = ({ type, rows, columns, littleKillers, values, decorations, rules }: Props) => {
+    const littleKillerRules = () => false
 
     rows = rows ?? 9
     columns = columns ?? 9
@@ -29,6 +31,7 @@ const LittleKillerSudkou = ({ type, rows, columns, littleKillers, values, decora
                 littleKillers: littleKillers,
                 ...(decorations ?? {}),
             }}
+            rules={() => littleKillerRules() && (!rules || rules())}
         />
     )
 }

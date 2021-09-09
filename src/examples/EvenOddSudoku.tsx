@@ -11,9 +11,13 @@ type Props = {
 
     evenOdds: EvenOdd[]
     decorations?: Decorations
+
+    rules?: () => boolean
 }
 
-const EvenOddSudoku = ({ type, rows, columns, values, evenOdds, decorations }: Props) => {
+const EvenOddSudoku = ({ type, rows, columns, values, evenOdds, decorations, rules }: Props) => {
+    const evenOddRules = () => false
+
     return (
         <Sudoku
             type={type ?? "Even/Odd Sudoku"}
@@ -24,6 +28,7 @@ const EvenOddSudoku = ({ type, rows, columns, values, evenOdds, decorations }: P
                 evenOdds: evenOdds,
                 ...decorations
             }}
+            rules={() => evenOddRules() && (!rules || rules())}
         />
     )
 }
