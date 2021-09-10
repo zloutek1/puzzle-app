@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { selectHighlight } from "../state/highlightSlice";
-import { useAppSelector } from "../state/hooks";
+import { Point } from "../types/general";
 import { equals } from "../utils";
 import { Context as BoardContext } from "./Board";
 
@@ -42,15 +41,18 @@ const StyledHighlight = styled.div<StyledProps>`
             right           ? `${thickness}px 0 0 0 ${color ?? "#4895ef"}`              : `0 0 0 0 ${color ?? "#000000"}`};
 `
 
-const Highlights = () => {
+type Props = {
+    highlightedCells: Point[]
+}
+
+const Highlights = ({ highlightedCells }: Props) => {
     const { cellSize } = useContext(BoardContext);
-    const highlights = useAppSelector(selectHighlight);
 
     const calculateBorder = (x: number, y: number) => {
-        const isUp = highlights.find((highlight) => equals(highlight, [x, y - 1]))
-        const isDown = highlights.find((highlight) => equals(highlight, [x, y + 1]))
-        const isLeft = highlights.find((highlight) => equals(highlight, [x - 1, y]))
-        const isRight = highlights.find((highlight) => equals(highlight, [x + 1, y]))
+        const isUp = highlightedCells.find((highlight) => equals(highlight, [x, y - 1]))
+        const isDown = highlightedCells.find((highlight) => equals(highlight, [x, y + 1]))
+        const isLeft = highlightedCells.find((highlight) => equals(highlight, [x - 1, y]))
+        const isRight = highlightedCells.find((highlight) => equals(highlight, [x + 1, y]))
 
         return {
             top: isUp === undefined,
@@ -62,8 +64,9 @@ const Highlights = () => {
 
     return (
         <div className="Highlights">
-            {highlights.map(([x, y]) => (
+            {highlightedCells.map(([x, y]) => (
                 <StyledHighlight
+                    key={`highlight-${x}-${y}`}
                     x={x}
                     y={y}
                     cellSize={cellSize}

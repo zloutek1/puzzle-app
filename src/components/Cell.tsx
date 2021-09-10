@@ -1,9 +1,13 @@
+import { MouseEvent } from "react"
 import styled from "styled-components"
 
 type Props<T> = {
     x: number
     y: number
     value: T | null
+
+    onMouseDown: (e: MouseEvent, x: number, y: number) => void
+    onMouseEnter: (e: MouseEvent, x: number, y: number) => void
 }
 
 const StyledCell = styled.div`
@@ -22,10 +26,16 @@ const StyledCell = styled.div`
     font-size: 1.5rem;
 `
 
-const Cell = <T,>({ value }: Props<T>) => {
-    return <StyledCell className="Cell">
-        {value}
-    </StyledCell>
+const Cell = <T,>({ x, y, value, onMouseDown, onMouseEnter }: Props<T>) => {
+    return (
+        <StyledCell
+            className="Cell"
+            onMouseDown={(e: MouseEvent) => onMouseDown(e, x, y)}
+            onMouseEnter={(e: MouseEvent) => onMouseEnter(e, x, y)}
+        >
+            {value}
+        </StyledCell>
+    )
 }
 
 export default Cell

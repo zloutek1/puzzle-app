@@ -1,8 +1,8 @@
-import { createContext } from "react"
+import { createContext, MouseEvent } from "react"
 import styled from "styled-components"
 import { selectPuzzle } from "../state/gameSlice"
 import { useAppSelector } from "../state/hooks"
-import { BoardContext } from "../types/general"
+import { BoardContext, Point } from "../types/general"
 import Decorations from "./Decorations"
 import Highlights from "./Highlights"
 import Values from "./Values"
@@ -17,7 +17,14 @@ export const Context = createContext<BoardContext>({
     cellSize: 0
 })
 
-const Board = () => {
+type Props = {
+    highlightedCells: Point[]
+
+    onMouseDown: (e: MouseEvent, x: number, y: number) => void
+    onMouseEnter: (e: MouseEvent, x: number, y: number) => void
+}
+
+const Board = ({ highlightedCells, onMouseDown, onMouseEnter }: Props) => {
     const puzzle = useAppSelector(selectPuzzle);
 
     if (puzzle === undefined)
@@ -34,9 +41,9 @@ const Board = () => {
             }}
         >
             <StyledBoard className="Board">
-                <Values cells={cells} />
+                <Values cells={cells} onMouseDown={onMouseDown} onMouseEnter={onMouseEnter} />
                 <Decorations decorations={decorations} />
-                <Highlights />
+                <Highlights highlightedCells={highlightedCells} />
             </StyledBoard>
         </Context.Provider>
     )

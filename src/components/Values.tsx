@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { MouseEvent, useContext } from "react"
 import styled from "styled-components"
 import { Cell as CellType } from "../types/puzzle"
 import { Context as BoardContext } from "./Board"
@@ -18,9 +18,12 @@ const StyledValues = styled.div<StyledProps>`
 
 type Props<T> = {
     cells: CellType<T>[][]
+
+    onMouseDown: (e: MouseEvent, x: number, y: number) => void
+    onMouseEnter: (e: MouseEvent, x: number, y: number) => void
 }
 
-const Values = <T,>({ cells }: Props<T>) => {
+const Values = <T,>({ cells, onMouseDown, onMouseEnter }: Props<T>) => {
     const { boardRows, boardColumns, cellSize } = useContext(BoardContext);
 
     return (
@@ -31,7 +34,7 @@ const Values = <T,>({ cells }: Props<T>) => {
             cellSize={cellSize}
         >
             {cells.map((row, y) =>
-                row.map((cell, x) => <Cell key={`cell-${x}-${y}`} {...cell} />)
+                row.map((cell, x) => <Cell key={`cell-${x}-${y}`} {...cell} onMouseDown={onMouseDown} onMouseEnter={onMouseEnter} />)
             )}
         </StyledValues>
     )

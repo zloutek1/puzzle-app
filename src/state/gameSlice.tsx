@@ -57,10 +57,10 @@ export const gameSlice = createSlice({
                     cells: cells,
                 },
             }
-        }
+        },
     },
 })
 
-export const { loadPuzzle, setValue } = gameSlice.actions;
+export const { loadPuzzle, setValue, clearValue } = gameSlice.actions;
 export const selectPuzzle = (state: RootState) => state.game.puzzle;
 export default gameSlice.reducer;
