@@ -1,6 +1,8 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { EvenOdd as EvenOddType } from "../../types/decorations/shape"
-import { BoardContext, Color, Dimensions } from "../../types/general"
+import { Color, Dimensions } from "../../types/general"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
@@ -21,16 +23,12 @@ const StyledEvenOdd = styled.div<StyledProps>`
     height: ${({dimensions: { height }}) => height}px;
 
     background-color: ${({color}) => color};
-    z-index: -10;
 
     ${({parity}) => parity === "odd" && "border-radius: 100%;"}
 `
 
-type Props = {
-    context: BoardContext
-}
-
-export const EvenOdd = ({ coords, dimensions, parity, color, context }: EvenOddType & Props) => {
+export const EvenOdd = ({ coords, dimensions, parity, color }: EvenOddType) => {
+    const { cellSize } = useContext(BoardContext);
     color = color ?? "lightgray"
 
     return (
@@ -40,16 +38,16 @@ export const EvenOdd = ({ coords, dimensions, parity, color, context }: EvenOddT
             y={coords[1]}
             dimensions={dimensions}
             color={color}
-            cellSize={context.cellSize}
+            cellSize={cellSize}
             parity={parity}
         />
     )
 }
 
-export const EvenOdds = ({ evenOdds, context }: { evenOdds: EvenOddType[] } & Props) => (
+export const EvenOdds = ({ evenOdds }: { evenOdds: EvenOddType[] }) => (
     <div className="EvenOdds">
         {evenOdds.map((evenOdd, i) => (
-            <EvenOdd key={`EvenOdd-${i}`} {...evenOdd} context={context} />
+            <EvenOdd key={`EvenOdd-${i}`} {...evenOdd} />
         ))}
     </div>
 )

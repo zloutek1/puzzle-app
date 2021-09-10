@@ -1,7 +1,9 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Fortress as FortressType } from "../../types/decorations/shape"
-import { BoardContext, Color, Dimensions } from "../../types/general"
+import { Color, Dimensions } from "../../types/general"
 import { equals } from "../../utils"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
@@ -43,11 +45,7 @@ const StyledArrow = styled.div`
     &.right  { grid-area: right;  transform: rotate(180deg);  }
 `
 
-type ContextProp = {
-    context: BoardContext
-}
-
-type Props = ContextProp & {
+type Props = {
     neighbours: {
         top: boolean,
         bottom: boolean,
@@ -56,7 +54,8 @@ type Props = ContextProp & {
     }
 }
 
-export const Fortress = ({ coords, dimensions, inequality, color, neighbours, context }: FortressType & Props) => {
+export const Fortress = ({ coords, dimensions, inequality, color, neighbours }: FortressType & Props) => {
+    const { cellSize } = useContext(BoardContext);
     color = color ?? "gray"
 
     return (
@@ -66,7 +65,7 @@ export const Fortress = ({ coords, dimensions, inequality, color, neighbours, co
             y={coords[1]}
             dimensions={dimensions}
             color={color}
-            cellSize={context.cellSize}
+            cellSize={cellSize}
         >
             {neighbours.top && <StyledArrow className="top">{inequality}</StyledArrow>}
             {neighbours.bottom && <StyledArrow className="bottom">{inequality}</StyledArrow>}
@@ -76,7 +75,7 @@ export const Fortress = ({ coords, dimensions, inequality, color, neighbours, co
     )
 }
 
-export const Fortresses = ({ fortresses, context }: { fortresses: FortressType[] } & ContextProp) => {
+export const Fortresses = ({ fortresses }: { fortresses: FortressType[] }) => {
     const rows = 9;
     const columns = 9;
 
@@ -101,7 +100,6 @@ export const Fortresses = ({ fortresses, context }: { fortresses: FortressType[]
                     key={`fortress-${i}`}
                     {...fortress}
                     neighbours={calculateNeighbours(...fortress.coords)}
-                    context={context}
                 />
             ))}
         </div>

@@ -1,13 +1,15 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { LittleKiller as LittleKillerType } from "../../types/decorations/side"
-import { BoardContext } from "../../types/general"
+import { BoardContext as BoardContextType } from "../../types/general"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
     y: number
     orientation: "up" | "down" | "left" | "right"
 
-    context: BoardContext
+    context: BoardContextType
 }
 
 
@@ -93,11 +95,8 @@ const StyledArrow = styled.div<ArrowProps>`
 
 `
 
-type Props = {
-    context: BoardContext
-}
-
-export const LittleKiller = ({ value, position, orientation, context }: LittleKillerType & Props) => {
+export const LittleKiller = ({ value, position, orientation }: LittleKillerType) => {
+    const context = useContext(BoardContext)
     const { boardRows, boardColumns } = context;
 
     const getCoords = (orientation: "up" | "down"| "left" | "right") => {
@@ -125,10 +124,10 @@ export const LittleKiller = ({ value, position, orientation, context }: LittleKi
     )
 }
 
-export const LittleKillers = ({ littleKillers, context }: { littleKillers: LittleKillerType[] } & Props) => (
+export const LittleKillers = ({ littleKillers }: { littleKillers: LittleKillerType[] }) => (
     <div className="LittleKillers">
         {littleKillers.map((littleKiller, i) => (
-            <LittleKiller key={`LittleKiller-${i}`} {...littleKiller} context={context} />
+            <LittleKiller key={`LittleKiller-${i}`} {...littleKiller} />
         ))}
     </div>
 )

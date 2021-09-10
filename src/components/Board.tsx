@@ -1,3 +1,4 @@
+import { createContext } from "react"
 import styled from "styled-components"
 import { selectPuzzle } from "../state/gameSlice"
 import { useAppSelector } from "../state/hooks"
@@ -9,6 +10,12 @@ const StyledBoard = styled.div`
     position: relative;
 `
 
+export const Context = createContext<BoardContext>({
+    boardRows: 0,
+    boardColumns: 0,
+    cellSize: 0
+})
+
 const Board = () => {
     const puzzle = useAppSelector(selectPuzzle);
 
@@ -17,21 +24,19 @@ const Board = () => {
 
     const { cells, decorations } = puzzle;
 
-    const columns = cells[0].length
-    const rows = cells.length
-    const cellSize = 50
-
-    const context: BoardContext = {
-        boardRows: rows,
-        boardColumns: columns,
-        cellSize: cellSize
-    }
-
     return (
-        <StyledBoard className="Board">
-            <Values rows={rows} columns={columns} cells={cells} cellSize={cellSize} />
-            <Decorations decorations={decorations} context={context} />
-        </StyledBoard>
+        <Context.Provider
+            value={{
+                boardRows: cells.length,
+                boardColumns: cells[0].length,
+                cellSize: 50,
+            }}
+        >
+            <StyledBoard className="Board">
+                <Values cells={cells} />
+                <Decorations decorations={decorations} />
+            </StyledBoard>
+        </Context.Provider>
     )
 }
 

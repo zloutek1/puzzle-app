@@ -1,33 +1,30 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Skyscraper as SkyscraperType } from "../../types/decorations/side"
-import { BoardContext } from "../../types/general"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
     y: number
 
-    context: BoardContext
+    cellSize: number
 }
 
 
 const StyledSkyscraper = styled.div<StyledProps>`
     position: absolute;
-    top:  calc(${({y, context: {cellSize}}) => `${y} * ${cellSize}px`});
-    left: calc(${({x, context: {cellSize}}) => `${x} * ${cellSize}px`});
-    width:  ${({context: {cellSize}}) => cellSize}px;
-    height: ${({context: {cellSize}}) => cellSize}px;
+    top:  calc(${({y, cellSize}) => `${y} * ${cellSize}px`});
+    left: calc(${({x, cellSize}) => `${x} * ${cellSize}px`});
+    width:  ${({cellSize}) => cellSize}px;
+    height: ${({cellSize}) => cellSize}px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 `
 
-type Props = {
-    context: BoardContext
-}
-
-export const Skyscraper = ({ value, position, orientation, context }: SkyscraperType & Props) => {
-    const { boardRows, boardColumns } = context;
+export const Skyscraper = ({ value, position, orientation }: SkyscraperType) => {
+    const { boardRows, boardColumns, cellSize } = useContext(BoardContext);
 
     const getCoords = (orientation: "up" | "down"| "left" | "right") => {
         switch (orientation) {
@@ -45,17 +42,17 @@ export const Skyscraper = ({ value, position, orientation, context }: Skyscraper
             x={x}
             y={y}
 
-            context={context}
+            cellSize={cellSize}
         >
             {value}
         </StyledSkyscraper>
     )
 }
 
-export const Skyscrapers = ({ skyscrapers, context }: { skyscrapers: SkyscraperType[] } & Props) => (
+export const Skyscrapers = ({ skyscrapers }: { skyscrapers: SkyscraperType[] }) => (
     <div className="Skyscrapers">
         {skyscrapers.map((skyscraper, i) => (
-            <Skyscraper key={`Skyscraper-${i}`} {...skyscraper} context={context} />
+            <Skyscraper key={`Skyscraper-${i}`} {...skyscraper} />
         ))}
     </div>
 )

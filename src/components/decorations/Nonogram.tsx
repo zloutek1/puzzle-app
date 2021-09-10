@@ -1,6 +1,8 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Nonogram as NonogramType } from "../../types/decorations/side"
-import { BoardContext } from "../../types/general"
+import { BoardContext as BoardContextType } from "../../types/general"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
@@ -8,7 +10,7 @@ type StyledProps = {
     orientation: "up" | "left"
     valueCount: number
 
-    context: BoardContext
+    context: BoardContextType
 }
 
 
@@ -50,11 +52,9 @@ const StyledNonogram = styled.div<StyledProps>`
     }
 `
 
-type Props = {
-    context: BoardContext
-}
+export const Nonogram = ({ values, position, orientation }: NonogramType) => {
+    const context = useContext(BoardContext)
 
-export const Nonogram = ({ values, position, orientation, context }: NonogramType & Props) => {
     const getCoords = (orientation: "up" | "left") => {
         switch (orientation) {
             case "up": return [position, 0]
@@ -77,10 +77,10 @@ export const Nonogram = ({ values, position, orientation, context }: NonogramTyp
     )
 }
 
-export const Nonograms = ({ nonograms, context }: { nonograms: NonogramType[] } & Props) => (
+export const Nonograms = ({ nonograms }: { nonograms: NonogramType[] }) => (
     <div className="Nonograms">
         {nonograms.map((nonogram, i) => (
-            <Nonogram key={`Nonogram-${i}`} {...nonogram} context={context} />
+            <Nonogram key={`Nonogram-${i}`} {...nonogram} />
         ))}
     </div>
 )

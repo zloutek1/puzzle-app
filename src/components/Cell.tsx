@@ -4,9 +4,6 @@ type Props<T> = {
     x: number
     y: number
     value: T | null
-
-    highlight: string
-    editable: boolean
 }
 
 const StyledCell = styled.div`
@@ -25,7 +22,7 @@ const StyledCell = styled.div`
     font-size: 1.5rem;
 `
 
-const Cell = <T,>({ x, y, value, highlight, editable }: Props<T>) => {
+const Cell = <T,>({ value }: Props<T>) => {
     return <StyledCell className="Cell">
         {value}
     </StyledCell>

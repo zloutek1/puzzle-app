@@ -1,6 +1,8 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Sojuko as SojukoType } from "../../types/decorations/between"
-import { BoardContext, Dimensions } from "../../types/general"
+import { Dimensions } from "../../types/general"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
@@ -34,22 +36,20 @@ const StyledXV = styled.div<StyledProps>`
     }
 `
 
-type Props = {
-    context: BoardContext
-}
+export const Sojuko = ({ between, dimensions, target }: SojukoType) => {
+    const { cellSize } = useContext(BoardContext);
 
-export const Sojuko = ({ between, dimensions, target, context }: SojukoType & Props) => {
     const [[x0, y0], [x1, y1], [x2, y2]] = between
     const x = x0 + (x1 - x0) / 2 + (x2 - x0) / 2
     const y = y0 + (y1 - y0) / 2 + (y2 - y0) / 2
 
-    return <StyledXV x={x} y={y} dimensions={dimensions} target={target} cellSize={context.cellSize} />
+    return <StyledXV x={x} y={y} dimensions={dimensions} target={target} cellSize={cellSize} />
 }
 
-export const Sojukos = ({ sojukos, context }: { sojukos: SojukoType[] } & Props) => (
+export const Sojukos = ({ sojukos }: { sojukos: SojukoType[] }) => (
     <div className="Sojukos">
         {sojukos.map((sojuko, i) =>
-            <Sojuko key={`Sojuko-${i}`} {...sojuko} context={context} />
+            <Sojuko key={`Sojuko-${i}`} {...sojuko} />
         )}
     </div>
 )

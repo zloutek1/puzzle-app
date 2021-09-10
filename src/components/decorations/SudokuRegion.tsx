@@ -1,7 +1,8 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { SudokuRegion as SudokuRegionType } from "../../types/decorations/region"
-import { BoardContext } from "../../types/general"
 import { equals } from "../../utils"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
@@ -40,11 +41,9 @@ const StyledBorder = styled.div<StyledProps>`
             right           ? `${thickness}px 0 0 0 ${color ?? "#000000"}`              : `0 0 0 0 ${color ?? "#000000"}`};
 `
 
-type Props = {
-    context: BoardContext
-}
+export const SudokuRegion = ({ cells }: SudokuRegionType) => {
+    const { cellSize } = useContext(BoardContext);
 
-export const SudokuRegion = ({ cells, context }: SudokuRegionType & Props) => {
     const calculateBorder = (x: number, y: number) => {
         const isUp = cells.find((cell) => equals(cell, [x, y - 1]))
         const isDown = cells.find((cell) => equals(cell, [x, y + 1]))
@@ -66,7 +65,7 @@ export const SudokuRegion = ({ cells, context }: SudokuRegionType & Props) => {
                     key={`region-${x}-${y}`}
                     x={x}
                     y={y}
-                    cellSize={context.cellSize}
+                    cellSize={cellSize}
                     thickness={5}
                     border={calculateBorder(x, y)}
                 />
@@ -75,10 +74,10 @@ export const SudokuRegion = ({ cells, context }: SudokuRegionType & Props) => {
     )
 }
 
-export const SudokuRegions = ({ sudokuRegions, context }: { sudokuRegions: SudokuRegionType[] } & Props) => (
+export const SudokuRegions = ({ sudokuRegions }: { sudokuRegions: SudokuRegionType[] }) => (
     <div className="SudokuRegions">
         {sudokuRegions.map((region, i) =>
-            <SudokuRegion key={`Region-${i}`} {...region} context={context} />
+            <SudokuRegion key={`Region-${i}`} {...region} />
         )}
     </div>
 )

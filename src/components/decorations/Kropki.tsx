@@ -1,6 +1,8 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Kropki as KropkiType } from "../../types/decorations/between"
-import { BoardContext, Color, Dimensions } from "../../types/general"
+import { Color, Dimensions } from "../../types/general"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
@@ -22,22 +24,20 @@ const StyledKropki = styled.div<StyledProps>`
     background-color: ${({ color }) => color};
 `
 
-type Props = {
-    context: BoardContext
-}
+export const Kropki = ({ between, dimensions, color }: KropkiType) => {
+    const { cellSize } = useContext(BoardContext);
 
-export const Kropki = ({ between, dimensions, color, context }: KropkiType & Props) => {
     const [[x0, y0], [x1, y1]] = between
     const x = x0 + (x1 - x0) / 2
     const y = y0 + (y1 - y0) / 2
 
-    return <StyledKropki x={x} y={y} dimensions={dimensions} color={color} cellSize={context.cellSize} />
+    return <StyledKropki x={x} y={y} dimensions={dimensions} color={color} cellSize={cellSize} />
 }
 
-export const Kropkis = ({ kropkis, context }: { kropkis: KropkiType[] } & Props) => (
+export const Kropkis = ({ kropkis }: { kropkis: KropkiType[] }) => (
     <div className="Kropkis">
         {kropkis.map((kropki, i) =>
-            <Kropki key={`Kropki-${i}`} {...kropki} context={context} />
+            <Kropki key={`Kropki-${i}`} {...kropki} />
         )}
     </div>
 )

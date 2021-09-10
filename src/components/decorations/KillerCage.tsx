@@ -1,7 +1,8 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { KillerCage as KillerCageType } from "../../types/decorations/region"
-import { BoardContext } from "../../types/general"
 import { equals } from "../../utils"
+import { Context as BoardContext } from "../Board"
 
 type StyledProps = {
     x: number
@@ -58,11 +59,9 @@ const StyledTarget = styled.div<TargetProps>`
     background-color: #FFFFFF;
 `
 
-type Props = {
-    context: BoardContext
-}
+export const KillerCage = ({ cells, target }: KillerCageType) => {
+    const { cellSize } = useContext(BoardContext);
 
-export const KillerCage = ({ cells, target, context }: KillerCageType & Props) => {
     const calculateBorder = (x: number, y: number) => {
         const isUp = cells.find((cell) => equals(cell, [x, y - 1]))
         const isDown = cells.find((cell) => equals(cell, [x, y + 1]))
@@ -106,24 +105,24 @@ export const KillerCage = ({ cells, target, context }: KillerCageType & Props) =
                         key={`killerCage-${x}-${y}`}
                         x={x}
                         y={y}
-                        cellSize={context.cellSize}
+                        cellSize={cellSize}
                         thickness={2}
                         offset={calculateOffset(border)}
                         border={border}
                     />
                 )
             })}
-            <StyledTarget x={targetX} y={targetY} cellSize={context.cellSize}>
+            <StyledTarget x={targetX} y={targetY} cellSize={cellSize}>
                 {target}
             </StyledTarget>
         </div>
     )
 }
 
-export const KillerCages = ({ killerCages, context }: { killerCages: KillerCageType[] } & Props) => (
+export const KillerCages = ({ killerCages }: { killerCages: KillerCageType[] }) => (
     <div className="KillerCages">
         {killerCages.map((region, i) =>
-            <KillerCage key={`Region-${i}`} {...region} context={context} />
+            <KillerCage key={`Region-${i}`} {...region} />
         )}
     </div>
 )
