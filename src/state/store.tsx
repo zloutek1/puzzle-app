@@ -1,12 +1,13 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import gameReducer from "./gameSlice";
+import highlightReducer from "./highlightSlice";
 
 export const store = configureStore({
     reducer: {
-        game: gameReducer
+        game: gameReducer,
+        highlight: highlightReducer
     },
 })
-
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

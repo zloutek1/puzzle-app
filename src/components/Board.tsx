@@ -4,6 +4,7 @@ import { selectPuzzle } from "../state/gameSlice"
 import { useAppSelector } from "../state/hooks"
 import { BoardContext } from "../types/general"
 import Decorations from "./Decorations"
+import Highlights from "./Highlights"
 import Values from "./Values"
 
 const StyledBoard = styled.div`
@@ -35,6 +36,7 @@ const Board = () => {
             <StyledBoard className="Board">
                 <Values cells={cells} />
                 <Decorations decorations={decorations} />
+                <Highlights />
             </StyledBoard>
         </Context.Provider>
     )
