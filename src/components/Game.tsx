@@ -1,4 +1,4 @@
-import { KeyboardEvent, MouseEvent, useState } from "react"
+import { KeyboardEvent, MouseEvent, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import { clearValue, loadPuzzle, setValue } from "../state/gameSlice"
@@ -18,7 +18,10 @@ const StyledGame = styled.div`
 
 const Game = <T,>({ puzzle }: Props<T>) => {
     const dispatch = useDispatch()
-    dispatch(loadPuzzle(puzzle))
+
+    useEffect(() => {
+        dispatch(loadPuzzle(puzzle))
+    }, [dispatch, puzzle])
 
     const [ isHighlighting, setIsHighlighting ] = useState(false)
     const { highlightedCells, highlightCell, setHighlightedCells } = useHighlight();
@@ -84,8 +87,16 @@ const Game = <T,>({ puzzle }: Props<T>) => {
     };
 
     return (
-        <StyledGame className="Game" tabIndex={0} onKeyDown={onKeyDown} onMouseUp={() => setIsHighlighting(false)}>
-            <Board highlightedCells={highlightedCells} onMouseDown={onMouseDown} onMouseEnter={onMouseEnter} />
+        <StyledGame
+            className="Game"
+            tabIndex={0}
+            onKeyDown={onKeyDown}
+        >
+            <Board
+                highlightedCells={highlightedCells}
+                onMouseDown={onMouseDown}
+                onMouseEnter={onMouseEnter}
+            />
         </StyledGame>
     )
 }
