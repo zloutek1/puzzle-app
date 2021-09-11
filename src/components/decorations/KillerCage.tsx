@@ -2,7 +2,7 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { KillerCage as KillerCageType } from "../../types/decorations/region"
 import { equals } from "../../utils"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number

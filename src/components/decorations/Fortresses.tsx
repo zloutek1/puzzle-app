@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Fortress as FortressType } from "../../types/decorations/shape"
 import { Color, Dimensions } from "../../types/general"
 import { equals } from "../../utils"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number

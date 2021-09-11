@@ -2,7 +2,7 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { EvenOdd as EvenOddType } from "../../types/decorations/shape"
 import { Color, Dimensions } from "../../types/general"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number

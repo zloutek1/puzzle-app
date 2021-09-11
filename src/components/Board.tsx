@@ -1,8 +1,8 @@
-import { createContext, MouseEvent } from "react"
+import { MouseEvent } from "react"
 import styled from "styled-components"
 import { selectPuzzle } from "../state/gameSlice"
 import { useAppSelector } from "../state/hooks"
-import { BoardContext, Point } from "../types/general"
+import { Point } from "../types/general"
 import Decorations from "./Decorations"
 import Highlights from "./Highlights"
 import Values from "./Values"
@@ -10,12 +10,6 @@ import Values from "./Values"
 const StyledBoard = styled.div`
     position: relative;
 `
-
-export const Context = createContext<BoardContext>({
-    boardRows: 0,
-    boardColumns: 0,
-    cellSize: 0
-})
 
 type Props = {
     highlightedCells: Point[]
@@ -33,19 +27,11 @@ const Board = ({ highlightedCells, onMouseDown, onMouseEnter }: Props) => {
     const { cells, decorations } = puzzle;
 
     return (
-        <Context.Provider
-            value={{
-                boardRows: cells.length,
-                boardColumns: cells[0].length,
-                cellSize: 50,
-            }}
-        >
-            <StyledBoard className="Board">
-                <Values cells={cells} onMouseDown={onMouseDown} onMouseEnter={onMouseEnter} />
-                <Decorations decorations={decorations} />
-                <Highlights highlightedCells={highlightedCells} />
-            </StyledBoard>
-        </Context.Provider>
+        <StyledBoard className="Board">
+            <Values cells={cells} onMouseDown={onMouseDown} onMouseEnter={onMouseEnter} />
+            <Decorations decorations={decorations} />
+            <Highlights highlightedCells={highlightedCells} />
+        </StyledBoard>
     )
 }
 

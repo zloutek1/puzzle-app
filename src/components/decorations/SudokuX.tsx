@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { SudokuXLine as SudokuXLineType } from "../../types/decorations/line"
 import { Color } from "../../types/general"
 import { line } from "../../utils"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Line as LineType, PalindromeLine as PalindromeLineType, RenbanLine as RenbanLineType } from "../../types/decorations/line"
 import { Color, Point } from "../../types/general"
 import { line, zip } from "../../utils"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number

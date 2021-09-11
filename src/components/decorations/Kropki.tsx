@@ -2,7 +2,7 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { Kropki as KropkiType } from "../../types/decorations/between"
 import { Color, Dimensions } from "../../types/general"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number

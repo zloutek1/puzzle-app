@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import styled from "styled-components"
 import { Skyscraper as SkyscraperType } from "../../types/decorations/side"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number

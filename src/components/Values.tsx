@@ -1,8 +1,8 @@
 import { MouseEvent, useContext } from "react"
 import styled from "styled-components"
 import { Cell as CellType } from "../types/puzzle"
-import { Context as BoardContext } from "./Board"
 import Cell from "./Cell"
+import { Context as BoardContext } from "./Game"
 
 type StyledProps = {
     rows: number

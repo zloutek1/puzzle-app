@@ -2,7 +2,7 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { LittleKiller as LittleKillerType } from "../../types/decorations/side"
 import { BoardContext as BoardContextType } from "../../types/general"
-import { Context as BoardContext } from "../Board"
+import { Context as BoardContext } from "../Game"
 
 type StyledProps = {
     x: number
