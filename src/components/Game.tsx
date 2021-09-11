@@ -71,8 +71,6 @@ const Game = <T,>({ puzzle }: Props<T>) => {
     }
 
     const onMouseDown = (e: MouseEvent | undefined, x: number, y: number) => {
-        e?.preventDefault()
-
         if (e && (e.ctrlKey || e.metaKey))
             highlightCell(x, y);
         else {
@@ -91,6 +89,7 @@ const Game = <T,>({ puzzle }: Props<T>) => {
             className="Game"
             tabIndex={0}
             onKeyDown={onKeyDown}
+            onMouseUp={() => setIsHighlighting(false)}
         >
             <Board
                 highlightedCells={highlightedCells}

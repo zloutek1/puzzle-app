@@ -24,6 +24,7 @@ const StyledCell = styled.div`
 
     cursor: pointer;
     font-size: 1.5rem;
+    user-select: none;
 `
 
 const Cell = <T,>({ x, y, value, onMouseDown, onMouseEnter }: Props<T>) => {
