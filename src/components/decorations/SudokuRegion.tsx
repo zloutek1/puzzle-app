@@ -18,11 +18,13 @@ type StyledProps = {
 }
 
 const StyledBorder = styled.div<StyledProps>`
+${({x, y, cellSize, thickness, border}) => `
     position: absolute;
-    top: calc(${({y, cellSize, thickness}) => `${y} * ${cellSize}px - ${thickness}px / 2`});
-    left: calc(${({x, cellSize, thickness}) => `${x} * ${cellSize}px - ${thickness}px / 2`});
-    width: ${({cellSize}) => cellSize}px;
-    height: ${({cellSize}) => cellSize}px;
+    top: calc(${y} * ${cellSize}px   - ${(border.top ? thickness / 2 : 0)}px);
+    left: calc(${x} * ${cellSize}px  - ${(border.left ? thickness / 2 : 0)}px);
+    width: calc(${cellSize}px        + ${(border.left ? thickness / 2 : 0)}px - ${(border.right ? thickness / 2 : 0)}px);
+    height: calc(${cellSize}px       + ${(border.top ? thickness / 2 : 0)}px  - ${(border.bottom ? thickness / 2 : 0)}px);
+    `}
 
     box-shadow:
         ${({ border: { top },           color, thickness }) =>
