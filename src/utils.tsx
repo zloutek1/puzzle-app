@@ -1,14 +1,15 @@
 import { Point } from "./types/general"
 
+
+
 /* cell generation */
 
 export const genEmptyCells = (rows: number, columns: number) =>
-Array.from(Array(rows), (y: number) =>
-    Array.from(Array(columns), (x: number) => ({
+Array.from(Array.from(Array(rows).keys()), (y: number) =>
+    Array.from(Array.from(Array(columns).keys()), (x: number) => ({
         x,
         y,
         value: null,
-        highlight: "",
         editable: true,
     }))
 )
@@ -19,7 +20,6 @@ values.map((row, y) =>
         x,
         y,
         value,
-        highlight: "",
         editable: value === null
     }))
 )
