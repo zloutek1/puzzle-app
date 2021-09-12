@@ -90,24 +90,33 @@ export const deepCopy = <T,>(target: T): T => {
 
 /* checks */
 
+export function check_non_empty<T>(list: (T | null)[]) {
+    for (const item of list) {
+        if (item === null) return false
+    }
+    return true
+}
+
 export function check_unique<T>(list: T[]) {
     const seen: T[] = []
     for (const item of list) {
-        if (item in seen) return false;
-        seen.push(item);
+        if (seen.find(el => equals(el, item))) {
+            return false
+        }
+        seen.push(item)
     }
-    return true;
+    return true
 }
 
 export function check_consecutive(list: number[]) {
-    let last = null;
+    let last = null
     for (const item of list) {
         if (last !== null) {
-            if (last + 1 !== item) return false;
+            if (last + 1 !== item) return false
         }
-        last = item;
+        last = item
     }
-    return true;
+    return true
 }
 
 export function check_ascending<T>(list: T[]) {
