@@ -72,57 +72,57 @@ const Game = <T,>({ puzzle }: Props<T>) => {
             if (highlightedCells.length >= 1) {
                 if (e.ctrlKey || e.metaKey) {
                     const selectedCell = highlightedCells[highlightedCells.length - 1];
-                    highlightCell(selectedCell[0] === 0 ? rows - 1 : selectedCell[0] - 1, selectedCell[1])
-                } else if (highlightCell.length !== 1) {
+                    highlightCell(selectedCell[0], selectedCell[1] === 0 ? rows - 1 : selectedCell[1] - 1)
+                } else if (highlightedCells.length !== 1) {
                     setHighlightedCells(highlightedCells.slice(-1));
                 } else {
                     const selectedCell = highlightedCells[0];
-                    setHighlightedCells([[selectedCell[0] === 0 ? rows - 1 : selectedCell[0] - 1, selectedCell[1]]]);
+                    setHighlightedCells([[selectedCell[0], selectedCell[1] === 0 ? rows - 1 : selectedCell[1] - 1]]);
                 }
                 return true;
             }
         }
 
-        if (e.key === 'ArrowDown' || e.key.toUpperCase() === 'S' || e.keyCode === 83) {
+        if (e.key === 'ArrowDown' || e.key.toUpperCase() === 'S') {
             if (highlightedCells.length >= 1) {
                 if (e.ctrlKey || e.metaKey) {
                     const selectedCell = highlightedCells[highlightedCells.length - 1];
-                    highlightCell(selectedCell[0] === rows - 1 ? 0 : selectedCell[0] + 1, selectedCell[1])
-                } else if (highlightCell.length !== 1) {
+                    highlightCell(selectedCell[0], selectedCell[1] === rows - 1 ? 0 : selectedCell[1] + 1)
+                } else if (highlightedCells.length !== 1) {
                     setHighlightedCells(highlightedCells.slice(-1));
                 } else {
                     const selectedCell = highlightedCells[0];
-                    setHighlightedCells([[selectedCell[0] === rows - 1 ? 0 : selectedCell[0] + 1, selectedCell[1]]]);
+                    setHighlightedCells([[selectedCell[0], selectedCell[1] === rows - 1 ? 0 : selectedCell[1] + 1]]);
                 }
                 return true;
             }
         }
 
-        if (e.key === 'ArrowLeft' || e.key.toUpperCase() === 'A' || e.keyCode === 65) {
+        if (e.key === 'ArrowLeft' || e.key.toUpperCase() === 'A') {
             if (highlightedCells.length >= 1) {
                 if (e.ctrlKey || e.metaKey) {
                     const selectedCell = highlightedCells[highlightedCells.length - 1];
-                    highlightCell(selectedCell[0], selectedCell[1] === 0 ? cols - 1 : selectedCell[1] - 1)
-                } else if (highlightCell.length !== 1) {
+                    highlightCell(selectedCell[0] === 0 ? cols - 1 : selectedCell[0] - 1, selectedCell[1])
+                } else if (highlightedCells.length !== 1) {
                     setHighlightedCells(highlightedCells.slice(-1));
                 } else {
                     const selectedCell = highlightedCells[0];
-                    setHighlightedCells([[selectedCell[0], selectedCell[1] === 0 ? cols - 1 : selectedCell[1] - 1]]);
+                    setHighlightedCells([[selectedCell[0] === 0 ? cols - 1 : selectedCell[0] - 1, selectedCell[1]]]);
                 }
                 return true;
             }
         }
 
-        if (e.key === 'ArrowRight' || e.key.toUpperCase() === 'D' || e.keyCode === 68) {
+        if (e.key === 'ArrowRight' || e.key.toUpperCase() === 'D') {
             if (highlightedCells.length >= 1) {
                 if (e.ctrlKey || e.metaKey) {
                     const selectedCell = highlightedCells[highlightedCells.length - 1];
-                    highlightCell(selectedCell[0], selectedCell[1] === cols - 1 ? 0 : selectedCell[1] - 1)
-                } else if (highlightCell.length !== 1) {
+                    highlightCell(selectedCell[0] === cols - 1 ? 0 : selectedCell[0] + 1, selectedCell[1])
+                } else if (highlightedCells.length !== 1) {
                     setHighlightedCells(highlightedCells.slice(-1));
                 } else {
                     const selectedCell = highlightedCells[0];
-                    setHighlightedCells([[selectedCell[0], selectedCell[1] === cols - 1 ? 0 : selectedCell[1] - 1]]);
+                    setHighlightedCells([[selectedCell[0] === cols - 1 ? 0 : selectedCell[0] + 1, selectedCell[1]]]);
                 }
                 return true;
             }
