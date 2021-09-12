@@ -18,26 +18,30 @@ type StyledProps = {
 }
 
 const StyledHighlight = styled.div<StyledProps>`
+${({x, y, cellSize, thickness, border}) => `
     position: absolute;
-    top: calc(${({y, cellSize}) => `${y} * ${cellSize}px`});
-    left: calc(${({x, cellSize}) => `${x} * ${cellSize}px`});
-    width: ${({cellSize}) => cellSize}px;
-    height: ${({cellSize}) => cellSize}px;
+    top: calc(${y} * ${cellSize}px + 1px);
+    left: calc(${x} * ${cellSize}px + 1px);
+    width: calc(${cellSize}px - ${(border.right ? thickness : 0)}px - 1px);
+    height: calc(${cellSize}px - ${(border.bottom ? thickness : 0)}px - 1px);
+
+    pointer-events: none;
+    `}
 
     box-shadow:
-        ${({ border: { top },           color, thickness }) =>
+        ${({ border: { top },    color, thickness }) =>
             top             ? `0 ${thickness}px 0 0 ${color ?? "#4895ef"} inset`        : `0 0 0 0 ${color ?? "#000000"} inset`},
 
-        ${({ border: { bottom },        color, thickness }) =>
+        ${({ border: { bottom }, color, thickness }) =>
             bottom          ? `0 ${thickness}px 0 0 ${color ?? "#4895ef"}`              : `0 0 0 0 ${color ?? "#000000"}`},
 
         ${({ border: { bottom, right }, color, thickness }) =>
             bottom && right ? `${thickness}px ${thickness}px 0 0 ${color ?? "#4895ef"}` : `0 0 0 0 ${color ?? "#000000"}`}, // fix corner
 
-        ${({ border: { left },          color, thickness }) =>
+        ${({ border: { left },   color, thickness }) =>
             left            ? `${thickness}px 0 0 0 ${color ?? "#4895ef"} inset`        : `0 0 0 0 ${color ?? "#000000"} inset`},
 
-        ${({ border: { right },         color, thickness }) =>
+        ${({ border: { right },  color, thickness }) =>
             right           ? `${thickness}px 0 0 0 ${color ?? "#4895ef"}`              : `0 0 0 0 ${color ?? "#000000"}`};
 `
 
@@ -46,9 +50,12 @@ type Props = {
 }
 
 const Highlights = ({ highlightedCells }: Props) => {
-    const { cellSize } = useContext(BoardContext);
+    const { boardRows, boardColumns, cellSize } = useContext(BoardContext);
 
     const calculateBorder = (x: number, y: number) => {
+        const isHighlighted = highlightedCells.find((highlight) => equals(highlight, [x, y]))
+        if (!isHighlighted) return { top: false, bottom: false, left: false, right: false }
+
         const isUp = highlightedCells.find((highlight) => equals(highlight, [x, y - 1]))
         const isDown = highlightedCells.find((highlight) => equals(highlight, [x, y + 1]))
         const isLeft = highlightedCells.find((highlight) => equals(highlight, [x - 1, y]))
@@ -64,16 +71,17 @@ const Highlights = ({ highlightedCells }: Props) => {
 
     return (
         <div className="Highlights">
-            {highlightedCells.map(([x, y]) => (
-                <StyledHighlight
-                    key={`highlight-${x}-${y}`}
-                    x={x}
-                    y={y}
-                    cellSize={cellSize}
-                    border={calculateBorder(x, y)}
-                    thickness={5}
-                />
-            ))}
+            {Array.from(Array(boardRows)).map((_, y) =>
+                Array.from(Array(boardColumns)).map((_, x) =>
+                    <StyledHighlight
+                        key={`highlight-${x}-${y}`}
+                        x={x}
+                        y={y}
+                        cellSize={cellSize}
+                        border={calculateBorder(x, y)}
+                        thickness={5}
+                        />
+                    ))}
         </div>
     )
 }
