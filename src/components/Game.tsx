@@ -6,6 +6,7 @@ import useHighlight from "../state/useHighlight"
 import { BoardContext } from "../types/general"
 import { Puzzle } from "../types/puzzle"
 import Board from "./Board"
+import GameControls from "./GameControls"
 
 export const Context = createContext<BoardContext>({
     boardRows: 0,
@@ -169,6 +170,7 @@ const Game = <T,>({ puzzle }: Props<T>) => {
                     onMouseDown={onMouseDown}
                     onMouseEnter={onMouseEnter}
                 />
+                <GameControls />
             </StyledGame>
         </Context.Provider>
     )
