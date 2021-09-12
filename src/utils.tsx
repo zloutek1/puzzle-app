@@ -20,7 +20,7 @@ values.map((row, y) =>
         y,
         value,
         highlight: "",
-        editable: true
+        editable: value === null
     }))
 )
 
@@ -65,36 +65,28 @@ export function isNumber(value: any) {
 
 /* deepCopy */
 
-export const deepCopy = (arr: any[]) => {
-    let copy: any[] = []
-    arr.forEach((elem) => {
-        if (Array.isArray(elem)) {
-            copy.push(deepCopy(elem))
-        } else if (typeof elem === "object") {
-            copy.push(deepCopyObject(elem))
-        } else {
-            copy.push(elem)
-        }
-    })
-    return copy
-}
+export const deepCopy = <T,>(target: T): T => {
+    if (target === null) {
+      return target;
+    }
+    if (target instanceof Date) {
+      return new Date(target.getTime()) as any;
+    }
+    if (target instanceof Array) {
+      const cp = [] as any[];
+      (target as any[]).forEach((v) => { cp.push(v); });
+      return cp.map((n: any) => deepCopy<any>(n)) as any;
+    }
+    if (typeof target === 'object' && target !== {}) {
+      const cp = { ...(target as { [key: string]: any }) } as { [key: string]: any };
+      Object.keys(cp).forEach(k => {
+        cp[k] = deepCopy<any>(cp[k]);
+      });
+      return cp as T;
+    }
+    return target;
+  };
 
-export const deepCopyObject = (obj: { [key: string]: any } | null) => {
-    if (obj === null) {
-        return null
-    }
-    let tempObj: { [key: string]: any } = {}
-    for (let [key, value] of Object.entries(obj)) {
-        if (Array.isArray(value)) {
-            tempObj[key] = deepCopy(value)
-        } else if (typeof value === "object") {
-            tempObj[key] = deepCopyObject(value)
-        } else {
-            tempObj[key] = value
-        }
-    }
-    return tempObj
-}
 
 /* checks */
 

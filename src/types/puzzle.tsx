@@ -4,8 +4,6 @@ export interface Cell<ValueType> {
     x: number
     y: number
     value: ValueType | null
-
-    highlight: string
     editable: boolean
 }
 

@@ -32,6 +32,10 @@ export const gameSlice = createSlice({
 
             const { x, y, value } = action.payload
             const cells = deepCopy(state.puzzle.cells)
+
+            if (!cells[y][x].editable)
+                return state
+
             cells[y][x].value = value
 
             return {
@@ -48,6 +52,10 @@ export const gameSlice = createSlice({
 
             const { x, y } = action.payload
             const cells = deepCopy(state.puzzle.cells)
+
+            if (!cells[y][x].editable)
+                return state
+
             cells[y][x].value = null
 
             return {
